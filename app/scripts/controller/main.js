@@ -8,11 +8,22 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-    $socpe.now=new Date();
-  });
+    .controller('MainCtrl', function($scope) {
+        $scope.awesomeThings = [
+            'HTML5 Boilerplate',
+            'AngularJS',
+            'Karma'
+        ];
+        $scope.now = new Date();
+
+
+        var tt = function() {
+            setTimeout(function() {
+                $scope.$apply(function() {
+                    $scope.now = new Date();
+                })
+                tt();
+            }, 1000);
+        }
+        tt();
+    });
