@@ -1,34 +1,15 @@
 'use strict';
 
-/**
- * @ngdoc overview
- * @name angularApp
- * @description
- * # angularApp
- *
- * Main module of the application.
- */
-angular
-  .module('angularApp', [
-    'ngAnimate',
-    'ngCookies',
-    'ngResource',
+define([
+  './controllers/main',
+  './directives/helloworld',
+  './services/book'
+], function () {
+  return angular.module('app', [
     'ngRoute',
-    'ngSanitize',
-    'ngTouch'
-  ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+    'app.controllers',
+    'app.directives',
+    'app.services'
+  ]);
+});
 

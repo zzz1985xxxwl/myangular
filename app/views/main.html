@@ -1,2 +1,7 @@
-{{now}}
-hello world
+<span ng-bind="now"></span>
+<button ng-click="addBook()">click me</button>
+<ul ng-repeat="item in books">
+  <li>title:{{item.title}},author:{{item.author}}</li>
+</ul>
+
+
