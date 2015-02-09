@@ -18,9 +18,13 @@ module.exports = function(grunt) {
         gruntfile: {
             files: ['Gruntfile.js']
         },
+        // styles: {
+        //     files: ['<%= config.app %>/styles/{,*/}*.css'],
+        //     tasks: ['newer:copy:styles', 'autoprefixer']
+        // },
         styles: {
-            files: ['<%= config.app %>/styles/{,*/}*.css'],
-            tasks: ['newer:copy:styles', 'autoprefixer']
+            files: ['<%= config.app %>/styles/{,*/}*.less'],
+            tasks: ['less']
         },
         livereload: {
             options: {
