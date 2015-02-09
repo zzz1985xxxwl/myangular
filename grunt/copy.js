@@ -1,0 +1,35 @@
+module.exports = function(grunt) {
+    grunt.config('copy', {
+        dist: {
+            files: [{
+                expand: true,
+                dot: true,
+                cwd: '<%= config.app %>',
+                dest: '<%= config.dist %>',
+                src: [
+                    '*.{ico,png,txt}',
+                    'images/{,*/}*.webp',
+                    '{,*/}*.html',
+                    'styles/fonts/{,*/}*.*'
+                ]
+            }, {
+                src: 'node_modules/apache-server-configs/dist/.htaccess',
+                dest: '<%= config.dist %>/.htaccess'
+            }, {
+                expand: true,
+                dot: true,
+                cwd: 'bower_components/bootstrap/dist',
+                src: 'fonts/*',
+                dest: '<%= config.dist %>'
+            }]
+        },
+        styles: {
+            expand: true,
+            dot: true,
+            cwd: '<%= config.app %>/styles',
+            dest: '.tmp/styles/',
+            src: '{,*/}*.css'
+        }
+    });
+    return grunt;
+};
