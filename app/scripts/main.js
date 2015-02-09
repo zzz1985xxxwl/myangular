@@ -34,6 +34,6 @@ require.config({
 define(['./routes'], function () {
 
   // 启动ng
-  angular.bootstrap(document, ['app']);
+  angular.bootstrap(document, ['dl.app']);
 
 });

@@ -5,11 +5,11 @@ define([
   './directives/helloworld',
   './services/book'
 ], function () {
-  return angular.module('app', [
+  return angular.module('dl.app', [
     'ngRoute',
-    'app.controllers',
-    'app.directives',
-    'app.services'
+    'dl.app.controllers',
+    'dl.app.directives',
+    'dl.app.services'
   ]);
 });
 

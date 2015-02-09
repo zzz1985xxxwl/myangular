@@ -1,3 +1,3 @@
 define(function () {
-  return angular.module('app.services', []);
+  return angular.module('dl.app.services', []);
 });
