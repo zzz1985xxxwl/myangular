@@ -8,7 +8,8 @@
  * Controller of the angularApp
  */
 define(['./module'], function (module) {
-  module.controller('MainController', ['$scope', 'Book', function ($scope, book) {
+  module.controller('MainController', ['$scope', 'Book',function ($scope, book) {
+
     $scope.books = book.books;
     $scope.awesomeThings = [
       'HTML5 Boilerplate',

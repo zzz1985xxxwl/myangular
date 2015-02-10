@@ -9,7 +9,8 @@ define([
     'ngRoute',
     'dl.app.controllers',
     'dl.app.directives',
-    'dl.app.services'
+    'dl.app.services',
+    'ui.bootstrap'
   ]);
 });
 

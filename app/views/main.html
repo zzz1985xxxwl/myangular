@@ -4,4 +4,21 @@
   <li>title:{{item.title}},author:{{item.author}}</li>
 </ul>
 
+<div>
+  <alert ng-repeat="item in books" type="success">{{item.author}}</alert>
+  <button class='btn btn-default' ng-click="addBook()">Add Alert</button>
+</div>
+
+<accordion close-others="oneAtATime">
+  <accordion-group heading="Static Header, initially expanded" >
+    This content is straight in the template.
+  </accordion-group>
+  <accordion-group heading="Dynamic Body Content">
+    <p>The body of the accordion group grows to fit the contents</p>
+    <div ng-repeat="item in books">{{item.author}}</div>
+  </accordion-group>
+</accordion>
+
+<button class="btn btn-default" ng-click="open()">Open me!</button>
+
 
