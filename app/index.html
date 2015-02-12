@@ -1,63 +1,71 @@
 <!doctype html>
 <html class="no-js">
-
 <head>
-    <meta charset="utf-8">
-    <title>delian</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <link rel="shortcut icon" href="/favicon.ico">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
-    <!-- build:js scripts/vendor/modernizr.js -->
-    <script src="bower_components/modernizr/modernizr.js"></script>
-    <!-- endbuild -->
-
+  <meta charset="utf-8">
+  <title>DeLian</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
+  <!-- build:js scripts/vendor/modernizr.js -->
+  <script src="bower_components/modernizr/modernizr.js"></script>
+  <!-- endbuild -->
 </head>
 
 <body>
-    <!--[if lt IE 10]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+<!--[if lt IE 10]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+  your browser</a> to improve your experience.</p>
+<![endif]-->
+<header>
+  <div class="page-logo">
+    <a href="/">
+      <img src="images/logo.png" alt="logo"/>
+    </a>
+  </div>
+  <div class="top-menu">
+    <ul class="nav navbar-nav pull-right">
+      <li class="dropdown dropdown-extended">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+          <i class="fa fa-bell-o"></i>
+          <span class="badge badge-default">7</span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+          <li><a href="#">Action</a></li>
+          <li><a href="#">Another action</a></li>
+          <li><a href="#">Something else here</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Separated link</a></li>
+        </ul>
+      </li>
+      <li class="dropdown dropdown-extended">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+          <i class="fa fa-bell"></i>
+          <span class="badge badge-default">7</span>
+        </a>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle">
+          <i class="fa fa-sign-out"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
+<footer>
 
+</footer>
 
-    <div class="container">
-        <div class="header">
-            <ul class="nav nav-pills pull-right">
-                <li class="active"><a href="#/">Home</a>
-                </li>
-                <li><a ng-href="#/about">About</a>
-                </li>
-                <li><a ng-href="#/">Contact</a>
-                </li>
-            </ul>
-            <h3 class="text-muted">delian</h3>
-        </div>
+<!-- build:js(.) scripts/vendor.js -->
 
-        <div class="container">
-            <div ng-view=""></div>
-        </div>
+<!-- endbuild -->
 
-        <div class="footer">
-          <div hello ></div>
-            <div class="container">
-                <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-            </div>
-        </div>
-
-    </div>
-
-    <alert  type="success" >hello</alert>
-    <!-- build:js(.) scripts/vendor.js -->
-
-    <!-- endbuild -->
-
-
-    <!-- build:js({app,.tmp}) scripts/app.js -->
-    <script src="bower_components/requirejs/require.js" data-main="scripts/config"></script>
-    <!-- endbuild -->
+<!-- build:js({app,.tmp}) scripts/app.js -->
+<script src="bower_components/requirejs/require.js" data-main="scripts/config"></script>
+<!-- endbuild -->
 </body>
 
 </html>

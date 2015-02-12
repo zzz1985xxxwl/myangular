@@ -26,9 +26,11 @@ module.exports = function (grunt) {
     fonts: {
       expand: true,
       dot: true,
-      cwd: 'bower_components/bootstrap/fonts',
-      dest: '.tmp/fonts/',
-      src: '{,*/}*.*'
+      cwd: 'bower_components',
+      src:['bootstrap/fonts/**','fontawesome/fonts/**'],
+      flatten: true,
+      filter: 'isFile',
+      dest: '.tmp/fonts/'
     }
   });
   return grunt;

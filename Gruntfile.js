@@ -25,7 +25,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'wiredep',
-      'less',
+      'less:dev',
       'copy:fonts',
       'autoprefixer',
       'connect:livereload',
