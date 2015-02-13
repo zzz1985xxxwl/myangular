@@ -19,24 +19,81 @@ ul,
 code,
 pre,
 li {
-  border-radius: 0 !important;
+  border-radius: 0;
 }
 
+.img-circle {
+  border-radius: 50%;
+}
+
+.img-rounded {
+  border-radius: 6px;
+}
+
+/***
+Custom Bootstrap Badges
+***/
 .badge {
-  border-radius: 12px !important;
+  font-size: 11px !important;
+  font-weight: 300;
+  text-align: center;
+  height: 18px;
+  padding: 3px 6px 3px 6px;
+  border-radius: 12px;
+  text-shadow: none;
+  text-align: center;
+  vertical-align: middle;
+  &.badge-roundless {
+    border-radius: 0;
+  }
+  &.badge-empty {
+    display: inline-block;
+    padding: 0;
+    min-width: 8px;
+    height: 8px;
+    width: 8px;
+  }
+}
+
+/* Badge variants */
+.badge-default {
+  background-color: @white-default;
+}
+
+.badge-primary {
+  background-color: @blue1-primary;
+}
+
+.badge-info {
+  background-color: @blue2-info;
+}
+
+.badge-success {
+  background-color: @green-success;
+}
+
+.badge-danger {
+  background-color: @red-danger;
+}
+
+.badge-warning {
+  background-color: @yellow-warning;
 }
 
 .progress {
   background-color: @gray-progress-bg;
   box-shadow: none;
   .progress-bar-success {
-    background-color: @green-progress;
+    background-color: @green-success;
   }
   .progress-bar-danger {
-    background-color: @red-progress;
+    background-color: @red-danger;
   }
   .progress-bar-warning {
-    background-color: @yellow-progress;
+    background-color: @yellow-warning;
+  }
+  .progress-bar-info {
+    background-color: @blue2-info;
   }
 }
 
@@ -84,6 +141,7 @@ Dropdown Menu
   box-shadow: 5px 5px @gray-shadow;
   border: 1px solid #eee;
   border-radius: 4px;
+  border-radius: 0;
 }
 
 .dropdown-menu li {

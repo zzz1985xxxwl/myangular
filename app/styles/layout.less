@@ -1,6 +1,9 @@
 body {
   background-color: @black-bg;
   font-size: @font-size-base;
+  color: #333333;
+  font-family: sans-serif;
+  direction: ltr;
 }
 
 header {
@@ -23,6 +26,7 @@ header .top-menu {
       & > a {
         color: @green-font-def;
         padding: @header-height/2-11 12px;
+        background-color: @black-bg;
         &:hover {
           background-color: @black-lighter;
           color: @green-font-def-hover;
@@ -60,10 +64,10 @@ header .top-menu .dropdown-menu {
       float: left;
       font-size: 1em;
       display: inline-block;
-      color:@green-font;
+      color: @green-font;
     }
-    a{
-      color:lighten(@blue-font, 10%);
+    a {
+      color: lighten(@blue-font, 10%);
       display: inline-block;
       padding: 0;
       background: none;
@@ -73,8 +77,8 @@ header .top-menu .dropdown-menu {
       right: 10px;
       border: 0;
       margin-top: -1px;
-      &:hover{
-        color:@blue-font;
+      &:hover {
+        color: @blue-font;
       }
     }
   }
