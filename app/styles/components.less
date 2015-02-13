@@ -1,0 +1,290 @@
+/***
+Rounded corners reset
+***/
+/* Reset rounded corners for all elements */
+div,
+input,
+select,
+textarea,
+span,
+img,
+table,
+label,
+td,
+th,
+p,
+a,
+button,
+ul,
+code,
+pre,
+li {
+  border-radius: 0 !important;
+}
+
+.badge {
+  border-radius: 12px !important;
+}
+
+.progress {
+  background-color: @gray-progress-bg;
+  box-shadow: none;
+  .progress-bar-success {
+    background-color: @green-progress;
+  }
+  .progress-bar-danger {
+    background-color: @red-progress;
+  }
+  .progress-bar-warning {
+    background-color: @yellow-progress;
+  }
+}
+
+/***
+Customized Bootstrap Close Icon
+***/
+.close {
+  display: inline-block;
+  margin-top: 0;
+  margin-right: 0;
+  width: 9px;
+  height: 9px;
+  background-repeat: no-repeat !important;
+  text-indent: -10000px;
+  outline: none;
+}
+
+/***
+Customized Bootstrap Dropdowns
+***/
+/***
+Dropdowns
+***/
+.dropup.open > .dropdown-toggle,
+.dropdown.open > .dropdown-toggle {
+  border-color: #ddd;
+}
+
+/***
+Dropdown Menu
+***/
+.dropdown-menu {
+  min-width: 175px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  list-style: none;
+  text-shadow: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+  background-color: #fff;
+  box-shadow: 5px 5px @gray-shadow;
+  border: 1px solid #eee;
+  border-radius: 4px;
+}
+
+.dropdown-menu li {
+  &.divider {
+    background: #f1f3f6;
+  }
+  > a {
+    padding: 8px 14px;
+    color: #555;
+    text-decoration: none;
+    display: block;
+    clear: both;
+    font-weight: 300;
+    line-height: 18px;
+    white-space: nowrap;
+    border-bottom: 1px solid @gray-border;
+    > [class^="fa-"], > [class*=" fa-"] {
+      color: #888;
+    }
+    > [class^="icon-"], > [class*=" icon-"] {
+      color: #666;
+    }
+    > [class^="glyphicon-"], > [class*=" glyphicon-"] {
+      color: #888;
+    }
+  }
+}
+
+.dropdown-menu {
+  li > a:hover, .active > a, .active > a:hover {
+    text-decoration: none;
+    background: #f6f6f6 none;
+    color: #555;
+    filter: none;
+  }
+  &.bottom-up {
+    top: auto;
+    bottom: 100%;
+    margin-bottom: 2px;
+  }
+}
+
+.dropdown,
+.dropdown-toggle,
+.btn-group {
+  > .dropdown-menu {
+    margin-top: 10px;
+    &:before {
+      position: absolute;
+      top: -8px;
+      left: 9px;
+      right: auto;
+      display: inline-block !important;
+      border-right: 8px solid transparent;
+      border-bottom: 8px solid #e0e0e0;
+      border-left: 8px solid transparent;
+      content: '';
+    }
+    &:after {
+      position: absolute;
+      top: -7px;
+      left: 10px;
+      right: auto;
+      display: inline-block !important;
+      border: 7px solid transparent;
+      border-top: none;
+      content: '';
+      border-bottom-color: @gray-bg;
+    }
+    &.pull-left {
+      &:before {
+        left: auto;
+        right: 9px;
+      }
+      &:after {
+        left: auto;
+        right: 10px;
+      }
+    }
+  }
+  &.dropup {
+    > .dropdown-menu {
+      margin-top: 0;
+      margin-bottom: 10px;
+      &:before, &:after {
+        display: none !important;
+      }
+    }
+  }
+}
+
+/* Dropdown submenu support for Bootsrap 3 */
+.dropdown-submenu {
+  position: relative;
+  > .dropdown-menu {
+    top: 5px;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+  }
+  > a:after {
+    position: absolute;
+    display: inline-block;
+    font-size: 14px;
+    right: 7px;
+    top: 7px;
+    font-family: FontAwesome;
+    height: auto;
+    content: "\f105";
+    font-weight: 300;
+  }
+  &.pull-left {
+    float: none;
+    > .dropdown-menu {
+      left: -100%;
+      margin-left: 10px;
+    }
+  }
+  &:hover {
+    > .dropdown-menu {
+      display: block;
+    }
+    > a:after {
+      border-left-color: #ffffff;
+    }
+  }
+}
+
+.dropup .dropdown-submenu > .dropdown-menu {
+  top: auto;
+  bottom: 0;
+  margin-top: 0;
+  margin-bottom: -2px;
+}
+
+.nav.pull-right > li > .dropdown-menu,
+.nav > li > .dropdown-menu.pull-right {
+  right: 0;
+  left: auto;
+  &:before {
+    right: 12px;
+    left: auto;
+  }
+  &:after {
+    right: 13px;
+    left: auto;
+  }
+  .dropdown-menu {
+    right: 100%;
+    left: auto;
+    margin-right: -1px;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: @screen-sm) {
+  .navbar-nav .open .dropdown-menu {
+    position: absolute;
+    float: left;
+    width: auto;
+    margin-top: 0;
+    background-color: #ffffff;
+    border: 1px solid #efefef;
+    box-shadow: 5px 5px rgba(102, 102, 102, 0.1);
+    > li > a {
+      padding: 6px 0 6px 13px;
+      color: #333;
+      &:hover, &:active {
+        background-color: #eee;
+      }
+    }
+  }
+}
+
+/***
+Dropdown Checkboxes
+***/
+.dropdown-content {
+  padding: 5px;
+  form {
+    margin: 0;
+  }
+}
+
+.dropdown.inline .dropdown-menu {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown-radiobuttons,
+.dropdown-checkboxes {
+  padding: 5px;
+  label {
+    display: block;
+    font-weight: 300;
+    color: #333;
+    margin-bottom: 4px;
+    margin-top: 4px;
+    .radio {
+      margin-right: 3px;
+    }
+  }
+}
+
