@@ -7,7 +7,7 @@ require.config({
     'angular-cookies': '../../bower_components/angular-cookies/angular-cookies',
     'angular-resource': '../../bower_components/angular-resource/angular-resource',
     'angular-sanitize': '../../bower_components/angular-sanitize/angular-sanitize',
-    'angular-bootstrap': '../../bower_components/angular-bootstrap/ui-bootstrap-tpls',
+    'bootstrap': '../../bower_components/bootstrap/dist/js/bootstrap',
     'app': 'app'
   },
   shim: {
@@ -26,11 +26,11 @@ require.config({
     'angular-sanitize': {
       deps: ['angular']
     },
-    'angular-bootstrap': {
-      deps: ['angular', 'angular-animate']
+    'bootstrap': {
+      deps: ['jquery']
     },
     'app': {
-      deps: ['jquery', 'angular', 'angular-route', 'angular-animate', 'angular-cookies', 'angular-resource', 'angular-sanitize','angular-bootstrap']
+      deps: ['jquery', 'angular', 'angular-route', 'angular-animate', 'angular-cookies', 'angular-resource','bootstrap']
     }
   }
 });

@@ -1,16 +1,16 @@
 'use strict';
 
 define([
-  './controllers/main',
   './directives/helloworld',
-  './services/book'
+  './services/book',
+  './controllers/main',
+  './controllers/sidebar'
 ], function () {
   return angular.module('dl.app', [
     'ngRoute',
     'dl.app.controllers',
     'dl.app.directives',
-    'dl.app.services',
-    'ui.bootstrap'
+    'dl.app.services'
   ]);
 });
 

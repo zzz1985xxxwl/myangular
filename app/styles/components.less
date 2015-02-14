@@ -140,7 +140,6 @@ Dropdown Menu
   background-color: #fff;
   box-shadow: 5px 5px @gray-shadow;
   border: 1px solid #eee;
-  border-radius: 4px;
   border-radius: 0;
 }
 
@@ -157,7 +156,6 @@ Dropdown Menu
     font-weight: 300;
     line-height: 18px;
     white-space: nowrap;
-    border-bottom: 1px solid @gray-border;
     > [class^="fa-"], > [class*=" fa-"] {
       color: #888;
     }
@@ -166,6 +164,10 @@ Dropdown Menu
     }
     > [class^="glyphicon-"], > [class*=" glyphicon-"] {
       color: #888;
+    }
+    .badge{
+      position: absolute;
+      right: 10px;
     }
   }
 }
@@ -209,7 +211,7 @@ Dropdown Menu
       border: 7px solid transparent;
       border-top: none;
       content: '';
-      border-bottom-color: @gray-bg;
+      border-bottom-color: #fff;
     }
     &.pull-left {
       &:before {
@@ -345,4 +347,46 @@ Dropdown Checkboxes
     }
   }
 }
+
+
+
+/* Form inputs */
+.form-control {
+  font-size: 14px;
+  font-weight: normal;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  box-shadow: none;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  &:focus {
+    border-color: #999;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  &[disabled],&[readonly],fieldset [disabled] &{
+    cursor: not-allowed;
+    background-color: #eeeeee;
+  }
+  &.height-auto {
+    height: auto;
+  }
+  &.form-control-solid {
+    background-color: #F1F3F8;
+    border-color: #F1F3F8;
+    color: #A6B2BA;
+    &:focus {
+      border-color: #e3e7f1;
+    }
+    &::-moz-placeholder {
+      color: #acb7be;
+      opacity: 1;
+    }
+    &::-ms-input-placeholder,&::-webkit-input-placeholder {
+      color: #acb7be;
+    }
+  }
+}
+
 

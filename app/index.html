@@ -15,7 +15,7 @@
   <!-- endbuild -->
 </head>
 
-<body>
+<body ng-class="{'page-sidebar-closed':sideBarClosed}">
 <!--[if lt IE 10]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
   your browser</a> to improve your experience.</p>
@@ -31,9 +31,9 @@
       <li class="dropdown dropdown-extended">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
           <i class="fa fa-bell-o"></i>
-          <span class="badge badge-default">7</span>
+          <span class="badge badge-info">7</span>
         </a>
-        <ul class="dropdown-menu extended" style="display: block;">
+        <ul class="dropdown-menu extended">
           <li class="external">
             <h3>你有<strong class="bold">12</strong>个待处理任务</h3>
             <a href="#">查看全部</a>
@@ -42,7 +42,8 @@
             <ul class="dropdown-menu-list scroller">
               <li>
                 <a href="#">
-									<span class="percent">30%</span>
+                  <span class="percent">30%</span>
+
                   <div class="progress">
                     <span style="width: 40%;" class="progress-bar progress-bar-success" aria-valuenow="40"
                           aria-valuemin="0" aria-valuemax="100"><span class="sr-only">40% Complete</span></span>
@@ -52,6 +53,7 @@
               <li>
                 <a href="#">
                   <span class="percent">30%</span>
+
                   <div class="progress">
                     <span style="width: 40%;" class="progress-bar progress-bar-success" aria-valuenow="40"
                           aria-valuemin="0" aria-valuemax="100"><span class="sr-only">40% Complete</span></span>
@@ -64,20 +66,113 @@
       </li>
       <li class="dropdown dropdown-extended">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-          <i class="fa fa-bell"></i>
-          <span class="badge badge-default">7</span>
+          <i class="fa fa-envelope-o"></i>
+          <span class="badge badge-danger">7</span>
         </a>
       </li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle">
+      <li class="dropdown dropdown-user">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+          <i class="fa fa-user"></i>
+					<span class="username">
+					管理员 </span>
+          <i class="fa fa-angle-down"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-default">
+          <li>
+            <a href="#">
+              <i class="fa fa-user"></i> 用户中心 </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-calendar"></i> 我的日历 </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-tasks"></i> 任务 <span class="badge badge-success">
+							7 </span>
+            </a>
+          </li>
+          <li class="divider">
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-lock"></i> 修改密码 </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-sign-out"></i> 退出 </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">
           <i class="fa fa-sign-out"></i>
         </a>
       </li>
     </ul>
   </div>
 </header>
-<footer>
+<div class="page-container">
+  <div class="page-sidebar-wrapper" ng-controller="SidebarController">
+    <div class="page-sidebar navbar-collapse collapse">
+      <ul ng-class="{'page-sidebar-menu-closed':sideBarClosed}" class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true"
+          data-slide-speed="200">
+        <li class="sidebar-toggler-wrapper">
+          <div class="sidebar-toggler fa fa-navicon" ng-click="showSidebar()">
+          </div>
+        </li>
+        <li class="sidebar-search-wrapper">
+          <div class="sidebar-search">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search...">
+							<span class="input-group-btn">
+							<a href="#" class="btn"><i class="fa fa-search"></i></a>
+							</span>
+            </div>
+          </div>
+        </li>
+        <li class="start active open">
+          <a href="#">
+            <i class="fa fa-home"></i>
+            <span class="title">Dashboard</span>
+            <span class="selected"></span>
+            <span class="arrow open"></span>
+          </a>
+          <ul class="sub-menu">
+            <li class="active">
+              <a href="#">
+                <i class="fa fa-home"></i>
+                Default Dashboard</a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-home"></i>
+                New Dashboard #1</a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-home"></i>
+                New Dashboard #2</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <!-- END SIDEBAR MENU -->
+    </div>
+  </div>
+  <div class="page-content-wrapper">
+    <div class="page-content">
 
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="page-footer-inner">
+    2014 © .
+  </div>
+  <div class="scroll-to-top">
+    <i class="icon-arrow-up"></i>
+  </div>
 </footer>
 
 <!-- build:js(.) scripts/vendor.js -->
