@@ -1,6 +1,10 @@
 /* Page Sidebar */
 .page-sidebar {
   background-color: @black-lighter;
+  width: @width-sidebar;
+  float: left;
+  position: relative;
+  margin-right: -100%;
   &.navbar-collapse {
     padding: 0;
     box-shadow: none;
@@ -22,6 +26,11 @@
       }
       &:last-child > a {
         border-bottom: 1px solid transparent !important;
+      }
+      &.open{
+        >a{
+          background: #2C3542;
+        }
       }
       &:hover {
         > a {
@@ -45,12 +54,12 @@
         color: @green-font-def;
       }
       > a {
+        border: 0;
         border-top: 1px solid @sidebar-border-top;
         color: @font-sidebar;
         display: block;
         position: relative;
         margin: 0;
-        border: 0;
         padding: 10px 15px;
         text-decoration: none;
         font-size: 14px;
@@ -182,7 +191,6 @@
 .page-sidebar .page-sidebar-menu {
   .sub-menu {
     list-style: none;
-    display: none;
     padding: 0;
     margin: 8px 0;
     li {
@@ -229,6 +237,11 @@
 
 //左侧
 .page-sidebar-reversed {
+  .page-sidebar {
+    float: right;
+    margin-right: 0;
+    margin-left: -100%;
+  }
   .page-sidebar .page-sidebar-menu.page-sidebar-menu-light > li > a, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu.page-sidebar-menu-light > li > a {
     padding-left: 15px;
     padding-right: 11px;
@@ -305,35 +318,21 @@
   }
 }
 
-.page-sidebar-closed .page-sidebar .page-sidebar-menu:hover .sub-menu {
-  background-color: @black-lighter;
+.page-full-width .page-sidebar {
+  display: none !important;
 }
 
-@media (min-width: @screen-md) {
-  /* 992px */
+.page-sidebar.navbar-collapse {
+  max-height: none !important;
+}
+
+//close
+.page-sidebar-closed {
   .page-sidebar {
-    width: @width-sidebar;
-    float: left;
-    position: relative;
-    margin-right: -100%;
-  }
-
-  .page-full-width .page-sidebar {
-    display: none !important;
-  }
-
-  .page-sidebar.navbar-collapse {
-    max-height: none !important;
-  }
-
-  .page-sidebar-reversed .page-sidebar {
-    float: right;
-    margin-right: 0;
-    margin-left: -100%;
-  }
-
-  .page-sidebar-closed .page-sidebar {
     width: 45px !important;
+    .page-sidebar-menu:hover .sub-menu {
+      background-color: @black-lighter;
+    }
     .page-sidebar-menu.page-sidebar-menu-closed {
       width: 45px !important;
       > li {
@@ -343,8 +342,8 @@
         &.heading > h3 {
           display: none;
         }
-        &.sidebar-search-wrapper{
-          &:hover{
+        &.sidebar-search-wrapper {
+          &:hover {
             box-shadow: none !important;
             a {
               i {
@@ -417,67 +416,19 @@
             width: 45px !important;
           }
         }
-
-      }
-    }
-  }
-
-  .page-sidebar-closed .page-sidebar .page-sidebar-menu.page-sidebar-menu-closed {
-    > li > a {
-      .selected {
-        right: -3px !important;
-      }
-      > .arrow, > .badge, > .title {
-        display: none !important;
-      }
-    }
-    .sidebar-toggler {
-      margin-left: 3px;
-      margin-right: 3px;
-    }
-    .sidebar-search .input-group {
-      border-color: transparent;
-      margin-left: -4px;
-      .form-control {
-        display: none;
-      }
-      .input-group-btn .btn {
-        display: block;
-      }
-    }
-    .sidebar-search.open {
-      height: 39px;
-      margin-top: 14px;
-      margin-bottom: 14px;
-      position: relative;
-      .remove {
-        display: block;
-        position: absolute;
-        top: 10px;
-      }
-      .input-group {
-        width: 210px;
-        position: relative;
-        z-index: 1;
-        margin-left: 24px;
-        padding: 0;
-        background-color: @black-lighter;
-        .input-group-btn .btn {
-          display: block;
-          margin-right: 8px;
-          margin-top: 1px;
-        }
-        .form-control {
-          background: none;
-          border: 0;
-          display: block;
-          padding: 8px 8px;
+        > a {
+          .selected {
+            right: -3px !important;
+          }
+          > .arrow, > .badge, > .title {
+            display: none !important;
+          }
         }
       }
     }
   }
 
-  .page-sidebar-closed.page-sidebar-reversed .page-sidebar {
+  &.page-sidebar-reversed .page-sidebar {
     margin-left: -45px;
     width: 45px;
     .page-sidebar-menu.page-sidebar-menu-closed > li {
@@ -518,157 +469,52 @@
       }
     }
   }
-
-  .page-sidebar-closed.page-sidebar-hide .page-sidebar {
-    display: none !important;
-  }
-
-  /* Sidebar Menu Wirh Hoverable Submenu */
-  .page-sidebar-menu.page-sidebar-menu-hover-submenu li .sub-menu {
-    display: none;
-    width: 210px;
-    z-index: 2000;
-    position: absolute;
-    border-radius: 4px;
-    > li > a {
-      margin: 3px;
-    }
-  }
-
-  .page-sidebar-menu.page-sidebar-menu-hover-submenu li.active .sub-menu,
-  .page-sidebar-menu.page-sidebar-menu-hover-submenu li.open .sub-menu {
-    display: none !important;
-  }
-
-  .page-sidebar-menu.page-sidebar-menu-hover-submenu li a > .arrow {
-    display: none;
-  }
-
-  .page-sidebar-menu.page-sidebar-menu-hover-submenu li:hover > a > .arrow {
-    display: block;
-    float: right;
-    position: absolute;
-    right: 0;
-    margin-top: -20px;
-    background: none;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-top: 12px double transparent;
-    border-bottom: 12px double transparent;
-    border-left: 0;
-    &:after, &:before {
-      display: none;
-    }
-  }
-
-  .page-sidebar-reversed .page-sidebar-menu.page-sidebar-menu-hover-submenu li:hover > a > .arrow {
-    right: auto;
-    left: 0;
-    border-right: 0;
-  }
-
-  .page-sidebar-menu.page-sidebar-menu-hover-submenu li:hover > .sub-menu {
-    display: inline-block !important;
-  }
-
-  .page-sidebar-menu.page-sidebar-menu-hover-submenu > li:hover > .sub-menu {
-    margin-left: @width-sidebar;
-    margin-top: -40px;
-    > li {
-      > a {
-        padding-left: 15px;
-      }
-    }
-  }
-
-  .page-sidebar-menu.page-sidebar-menu-hover-submenu > li:hover > a > .arrow {
-    z-index: 1;
-    right: 0;
-    margin-top: -23px;
-  }
-
-  .page-sidebar-menu.page-sidebar-menu-hover-submenu > li:hover > a > .selected {
-    display: none;
-  }
-
-  .page-sidebar-reversed .page-sidebar-menu.page-sidebar-menu-hover-submenu > li:hover > .sub-menu {
-    margin-left: -210px !important;
-  }
-
-  .page-sidebar-closed .page-sidebar-menu.page-sidebar-menu-hover-submenu > li:hover > .sub-menu {
-    margin-left: 0;
-  }
 }
 
-@media (max-width: (@screen-md)-1) {
-  /* 991px */
-  .page-sidebar {
-    border-top: 0 !important;
-    margin: 20px;
-    .sidebar-toggler {
+.page-sidebar-closed .page-sidebar .page-sidebar-menu.page-sidebar-menu-closed {
+  .sidebar-toggler {
+    margin-left: 3px;
+    margin-right: 3px;
+  }
+  .sidebar-search .input-group {
+    border-color: transparent;
+    margin-left: -4px;
+    .form-control {
       display: none;
     }
-    .mega-menu-responsive-content {
-      padding: 10px 18px 10px 45px;
-    }
-    .selected {
-      display: none !important;
-    }
-    &.navbar-collapse {
-      max-height: none;
-      .collapse {
-        display: none !important;
-        &.in {
-          border-top: 0 !important;
-          margin: 20px;
-          position: relative;
-          overflow: hidden !important;
-          overflow-y: auto !important;
-          display: block !important;
-        }
-      }
-      &.navbar-no-scroll {
-        max-height: none !important;
-      }
+    .input-group-btn .btn {
+      display: block;
     }
   }
-
-  .page-full-width .page-sidebar-menu {
-    display: block;
-  }
-}
-
-@media (min-width: @screen-sm) and (max-width: (@screen-md)-1) {
-  /* 768px & 991px */
-  .page-sidebar .btn-navbar {
-    .collapsed .arrow {
-      display: none;
-    }
-    .arrow {
+  .sidebar-search.open {
+    height: 41px;
+    margin-top: 14px;
+    margin-bottom: 14px;
+    position: relative;
+    .remove {
+      display: block;
       position: absolute;
-      right: 25px;
-      width: 0;
-      height: 0;
-      top: 50px;
-      border-bottom: 15px solid #5f646b;
-      border-left: 15px solid transparent;
-      border-right: 15px solid transparent;
+      top: 10px;
+    }
+    .input-group {
+      width: 210px;
+      position: relative;
+      z-index: 1;
+      margin-left: 24px;
+      padding: 0;
+      background-color: @black-lighter;
+      .input-group-btn .btn {
+        display: block;
+        margin-right: 8px;
+        margin-top: 1px;
+      }
+      .form-control {
+        background: none;
+        border: 0;
+        display: block;
+        padding: 8px 8px;
+      }
     }
   }
 }
 
-@media (max-width: @screen-xs) {
-  /* 480px */
-  /* Page sidebar */
-  .page-sidebar,
-  .page-sidebar.in {
-    margin: 0 10px 10px 10px !important;
-  }
-
-  .page-header-fixed.page-header-fixed-mobile .page-sidebar,
-  .page-header-fixed.page-header-fixed-mobile
-  .page-sidebar.in {
-    margin-top: 10px !important;
-  }
-}

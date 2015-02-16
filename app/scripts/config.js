@@ -1,4 +1,6 @@
+'use strict';
 require.config({
+  // alias libraries paths
   paths: {
     'jquery': '../../bower_components/jquery/dist/jquery',
     'angular': '../../bower_components/angular/angular',
@@ -8,36 +10,21 @@ require.config({
     'angular-resource': '../../bower_components/angular-resource/angular-resource',
     'angular-sanitize': '../../bower_components/angular-sanitize/angular-sanitize',
     'bootstrap': '../../bower_components/bootstrap/dist/js/bootstrap',
-    'app': 'app'
+    'angularAMD': '../../bower_components/angularAMD/angularAMD'
   },
+
+  // Add angular modules that does not support AMD out of the box, put it in a shim
   shim: {
-    'angular-route': {
-      deps: ['angular']
-    },
-    'angular-animate': {
-      deps: ['angular']
-    },
-    'angular-cookies': {
-      deps: ['angular']
-    },
-    'angular-resource': {
-      deps: ['angular']
-    },
-    'angular-sanitize': {
-      deps: ['angular']
-    },
-    'bootstrap': {
-      deps: ['jquery']
-    },
-    'app': {
-      deps: ['jquery', 'angular', 'angular-route', 'angular-animate', 'angular-cookies', 'angular-resource','bootstrap']
-    }
-  }
+    'angularAMD': ['angular'],
+    'angular-route': ['angular'],
+    'angular-animate':['angular'],
+    'angular-cookies':['angular'],
+    'angular-resource':['angular'],
+    'angular-sanitize':['angular'],
+    'bootstrap':['jquery']
+  },
+
+  // kick start application
+  deps: ['app']
 });
 
-define(['./routes'], function () {
-
-  // 启动ng
-  angular.bootstrap(document, ['dl.app']);
-
-});

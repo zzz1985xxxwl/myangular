@@ -1,5 +1,4 @@
 body {
-  background-color: @black-bg;
   font-size: @font-size-base;
   color: #333333;
   font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "WenQuanYi Micro Hei", sans-serif;
@@ -11,6 +10,7 @@ Page header
 ***/
 header {
   height: @header-height;
+  background-color: @black-bg;
   .page-logo {
     float: left;
     display: block;
@@ -29,6 +29,7 @@ Page container
   margin: 0;
   padding: 0;
   position: relative;
+  background-color: @black-bg;
   .clearfix();
 }
 
@@ -40,6 +41,7 @@ footer {
   font-size: 12px;
   height: 33px;
   color: @green-font-def;
+  background-color: @black-bg;
   .clearfix();
   .page-footer-inner {
     float: left;
@@ -165,7 +167,7 @@ Page content
 
 .page-container-bg-solid .page-bar {
   position: relative;
-  padding: 0px 20px;
+  padding: 0 20px;
   background-color: #ffffff;
   margin: -25px -20px 0 -20px;
 }
