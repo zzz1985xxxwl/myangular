@@ -29,19 +29,19 @@
   <div class="top-menu pull-right">
     <ul class="nav navbar-nav  pull-right">
       <li class="dropdown dropdown-extended">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+        <a  class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
           <i class="fa fa-bell-o"></i>
           <span class="badge badge-info">7</span>
         </a>
         <ul class="dropdown-menu extended">
           <li class="external">
             <h3>你有<strong class="bold">12</strong>个待处理任务</h3>
-            <a href="#">查看全部</a>
+            <a>查看全部</a>
           </li>
           <li>
             <ul class="dropdown-menu-list scroller">
               <li>
-                <a href="#">
+                <a>
                   <span class="percent">30%</span>
 
                   <div class="progress">
@@ -51,7 +51,7 @@
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a>
                   <span class="percent">30%</span>
 
                   <div class="progress">
@@ -65,13 +65,13 @@
         </ul>
       </li>
       <li class="dropdown dropdown-extended">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+        <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
           <i class="fa fa-envelope-o"></i>
           <span class="badge badge-danger">7</span>
         </a>
       </li>
       <li class="dropdown dropdown-user">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+        <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
           <i class="fa fa-user"></i>
 					<span class="username">
 					管理员 </span>
@@ -79,15 +79,15 @@
         </a>
         <ul class="dropdown-menu dropdown-menu-default">
           <li>
-            <a href="#">
+            <a >
               <i class="fa fa-user"></i> 用户中心 </a>
           </li>
           <li>
-            <a href="#">
+            <a >
               <i class="fa fa-calendar"></i> 我的日历 </a>
           </li>
           <li>
-            <a href="#">
+            <a >
               <i class="fa fa-tasks"></i> 任务 <span class="badge badge-success">
 							7 </span>
             </a>
@@ -95,17 +95,17 @@
           <li class="divider">
           </li>
           <li>
-            <a href="#">
+            <a >
               <i class="fa fa-lock"></i> 修改密码 </a>
           </li>
           <li>
-            <a href="#">
+            <a >
               <i class="fa fa-sign-out"></i> 退出 </a>
           </li>
         </ul>
       </li>
       <li>
-        <a href="#">
+        <a >
           <i class="fa fa-sign-out"></i>
         </a>
       </li>
@@ -124,31 +124,31 @@
         </li>
         <li class="sidebar-search-wrapper">
           <div class="sidebar-search" ng-class="{'open':sideBarSearchOpen}">
-            <a href="#" class="remove" ng-click="closeSearch()">
+            <a class="remove" ng-click="closeSearch()">
               <i class="fa fa-close"></i>
             </a>
 
             <div class="input-group">
               <input type="text" class="form-control" placeholder="Search...">
 							<span class="input-group-btn">
-							<a href="#" class="btn" ng-click="showSearch()"><i class="fa fa-search"></i></a>
+							<a class="btn" ng-click="showSearch()"><i class="fa fa-search"></i></a>
 							</span>
             </div>
           </div>
         </li>
         <li ng-repeat="item in sidebar" ng-class="{active:item.active,open:item.open}">
-          <a href="#" ng-click="menuParentClick(item)">
+          <a class="toggle" ng-click="menuParentClick(item)">
             <i class="fa fa-{{item.icon}}"></i>
             <span class="title" ng-bind="item.name"></span>
             <span class="selected"></span>
             <span class="arrow" ng-class="{open:item.open}"></span>
             <span ng-if="item.badge!=''" class="badge badge-warning" ng-bind="item.badge"></span>
           </a>
-          <ul class="sub-menu" ng-show="item.open">
-            <li ng-repeat="child in item.child" ng-class="{active:child.active}" >
-              <a href="#" ng-click="menuChildClick(child)">
+          <ul class="sub-menu" ng-class="{'slide-down':item.open}">
+            <li ng-repeat="child in item.child" ng-class="{active:child.active}">
+              <a  ng-click="menuChildClick(child)">
                 <i class="fa fa-{{child.icon}}"></i>
-                <span ng-if="child.badge!=''"  class="badge badge-success" ng-bind="child.badge"></span>
+                <span ng-if="child.badge!=''" class="badge badge-success" ng-bind="child.badge"></span>
                 <span ng-bind="child.name"></span></a>
             </li>
           </ul>
@@ -158,7 +158,7 @@
     </div>
   </div>
   <div class="page-content-wrapper">
-    <div class="page-content">
+    <div class="page-content page-content-height" data-ng-view>
 
     </div>
   </div>

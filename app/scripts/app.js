@@ -1,6 +1,14 @@
 'use strict';
-define(['angularAMD', 'angular-route','angular-animate','angular-cookies','controllers/sidebar_ctrl','angular-resource','bootstrap'], function (angularAMD) {
-  var app = angular.module('dl-app', ['ngRoute']);
+define(['angularAMD',
+  'angular-route',
+  'angular-animate',
+  'angular-cookies',
+  'controllers/sidebar_ctrl',
+  'directives/pageContentHeight',
+  'animation/slideDown',
+  'angular-resource',
+  'bootstrap'], function (angularAMD) {
+  var app = angular.module('dl-app', ['ngRoute','ngAnimate','ngCookies','ngResource']);
 
   app.config(function ($routeProvider) {
     $routeProvider

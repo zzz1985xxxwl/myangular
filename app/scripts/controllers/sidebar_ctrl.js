@@ -3,7 +3,6 @@ define(['angularAMD'], function (angularAMD) {
   angularAMD.controller('SidebarController', ['$scope', '$rootScope', function ($scope, $rootScope) {
     $rootScope.sideBarClosed = false;
     $scope.sideBarSearchOpen = false;
-
     $scope.sidebar = [
       {
         name: 'Home',
@@ -12,27 +11,9 @@ define(['angularAMD'], function (angularAMD) {
         open: true,
         active: true,
         child: [
-          {
-            name: 'home1',
-            icon: 'home',
-            badge: '1',
-            url: '',
-            open: false
-          },
-          {
-            name: 'home1',
-            icon: 'home',
-            badge: '',
-            url: '',
-            open: false
-          },
-          {
-            name: 'home1',
-            icon: 'home',
-            badge: '',
-            url: '',
-            open: false
-          }
+          {name: 'home1', icon: 'home', badge: '1', url: '', active: true},
+          {name: 'home1', icon: 'home', badge: '1', url: '', active: false},
+          {name: 'home1', icon: 'home', badge: '', url: '', active: false}
         ]
       },
       {
@@ -42,27 +23,14 @@ define(['angularAMD'], function (angularAMD) {
         open: false,
         active: false,
         child: [
-          {
-            name: 'home1',
-            icon: 'home',
-            badge: '',
-            url: '',
-            active: false
-          },
-          {
-            name: 'home1',
-            icon: 'home',
-            badge: '',
-            url: '',
-            active: false
-          },
-          {
-            name: 'home1',
-            icon: 'home',
-            badge: '',
-            url: '',
-            active: false
-          }
+          {name: 'home1', icon: 'home', badge: '', url: '', active: false},
+          {name: 'home1', icon: 'home', badge: '', url: '', active: false},
+          {name: 'home1', icon: 'home', badge: '', url: '', active: false},
+          {name: 'home1', icon: 'home', badge: '', url: '', active: false},
+          {name: 'home1', icon: 'home', badge: '', url: '', active: false},
+          {name: 'home1', icon: 'home', badge: '', url: '', active: false},
+          {name: 'home1', icon: 'home', badge: '', url: '', active: false},
+          {name: 'home1', icon: 'home', badge: '', url: '', active: false}
         ]
       }
     ];
@@ -79,26 +47,27 @@ define(['angularAMD'], function (angularAMD) {
         $scope.sideBarSearchOpen = false;
       }
     };
-    $scope.menuParentClick=function(item){
-      var open=!item.open;
-      $scope.sidebar.forEach(function(sidebarItem){
-        sidebarItem.open=false;
+    $scope.menuParentClick = function (item) {
+      var open = !item.open;
+      $scope.sidebar.forEach(function (sidebarItem) {
+        sidebarItem.open = false;
       });
-      item.open=open;
+      item.open = open;
     };
-    $scope.menuChildClick=function(item){
-      var active=!item.active;
-      $scope.sidebar.forEach(function(sidebarItem){
-        sidebarItem.active=false;
-        sidebarItem.child.forEach(function(childItem){
-          if(childItem==item){
-            sidebarItem.active=true;
+    $scope.menuChildClick = function (item) {
+      var active = !item.active;
+      $scope.sidebar.forEach(function (sidebarItem) {
+        sidebarItem.active = false;
+        sidebarItem.child.forEach(function (childItem) {
+          if (childItem === item) {
+            sidebarItem.active = true;
           }
-          childItem.active=false;
+          childItem.active = false;
         });
       });
-      item.active=active;
+      item.active = active;
     };
   }]);
+
 });
 
