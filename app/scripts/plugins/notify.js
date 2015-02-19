@@ -1,12 +1,4 @@
-/* ========================================================================
- * Bootstrap: notify.js v3.3.0
- * http://getbootstrap.com/javascript/#notify
- * ========================================================================
- * Copyright 2011-2014 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
-
-(function($) {
+define(['util'], function () {
   'use strict';
 
   // Notify CLASS DEFINITION
@@ -16,7 +8,7 @@
 
     this.options = $.extend({}, Notify.DEFAULTS, options);
 
-    this.$html = $($.xui.utils.template(this.options.template, {
+    this.$html = $($.dl.utils.template(this.options.template, {
       type: this.options.type,
       text: this.options.text
     }));
@@ -101,5 +93,4 @@
     $.notify = old;
     return this;
   };
-
-})(jQuery);
+});

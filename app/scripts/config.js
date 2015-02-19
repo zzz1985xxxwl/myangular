@@ -10,7 +10,8 @@ require.config({
     'angular-resource': '../../bower_components/angular-resource/angular-resource',
     'angular-sanitize': '../../bower_components/angular-sanitize/angular-sanitize',
     'bootstrap': '../../bower_components/bootstrap/dist/js/bootstrap',
-    'angularAMD': '../../bower_components/angularAMD/angularAMD'
+    'angularAMD': '../../bower_components/angularAMD/angularAMD',
+    'util':'plugins/util'
   },
 
   // Add angular modules that does not support AMD out of the box, put it in a shim
@@ -21,7 +22,8 @@ require.config({
     'angular-cookies':['angular'],
     'angular-resource':['angular'],
     'angular-sanitize':['angular'],
-    'bootstrap':['jquery']
+    'bootstrap':['jquery'],
+    'util':['jquery']
   },
 
   // kick start application

@@ -22,6 +22,7 @@
     "define": false,
     "module": true,
     "export": true,
-    "console": false
+    "console": false,
+    "angular":true
   }
 }

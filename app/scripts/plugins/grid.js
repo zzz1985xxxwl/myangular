@@ -1,9 +1,5 @@
-(function ($) {
+define(['util'], function () {
   'use strict';
-
-  // XGrid CLASS DEFINITION
-  // ======================
-
   var Grid = function ($this, options) {
     this.$grid = $this;
     this.options = $.extend({}, Grid.DEFAULTS, options);
@@ -31,24 +27,24 @@
     onError: null,
     template: {
       head: {
-        row: '<div class="xgh-row"></div>',
-        cell: '<div class="xgh-cell"></div>',
-        sort: '<div class="xgh-sort"><a class="asc"><i class="fa fa-sort-asc"></i></a><a class="desc"><i class="fa fa-sort-desc"></i></a></div>'
+        row: '<div class="dl-grid-head-row"></div>',
+        cell: '<div class="dl-grid-head-cell"></div>',
+        sort: '<div class="dl-grid-head-sort"><a class="asc"><i class="fa fa-sort-asc"></i></a><a class="desc"><i class="fa fa-sort-desc"></i></a></div>'
       },
       body: {
-        row: '<div class="xgb-row"></div>',
-        cell: '<div class="xgb-cell"><div class="xgb-c-content"></div></div>'
+        row: '<div class="dl-grid-body-row"></div>',
+        cell: '<div class="dl-grid-body-cell"><div class="dl-grid-body-c-content"></div></div>'
       },
-      gContainer: '<div class="xg-container"></div>',
-      gLeft: '<div class="xg-left"><div class="xg-head">' +
-      '<div class="xgh-row"></div></div><div class="hide-scroll"><div class="xg-body"></div></div></div>',
-      gRight: '<div class="xg-right"><div class="hide-scroll">' +
-      '<div class="xg-head"><div class="xgh-row"></div></div>' +
-      '</div><div class="scroll hide-scroll"><div class="xg-body"></div></div></div>',
-      page: '<div class="xg-page"><div class="info">显示<b>{{from}}</b>到<b>{{to}}</b>,共<b>{{total}}</b>条</div><ul class="pagination">' +
+      gContainer: '<div class="dl-grid-container"></div>',
+      gLeft: '<div class="dl-grid-left"><div class="dl-grid-head">' +
+      '<div class="dl-grid-head-row"></div></div><div class="hide-scroll"><div class="dl-grid-body"></div></div></div>',
+      gRight: '<div class="dl-grid-right"><div class="hide-scroll">' +
+      '<div class="dl-grid-head"><div class="dl-grid-head-row"></div></div>' +
+      '</div><div class="scroll hide-scroll"><div class="dl-grid-body"></div></div></div>',
+      page: '<div class="dl-grid-page"><div class="info">显示<b>{{from}}</b>到<b>{{to}}</b>,共<b>{{total}}</b>条</div><ul class="pagination">' +
       '<li><a class="first">&laquo;</a></li><li><a class="prev">&lt;</a></li><li><a class="next">&gt;</a></li>' +
       '<li><a class="last">&raquo;</a></li></ul></div>',
-      colResize: '<div class="xg-colResize"></div>'
+      colResize: '<div class="dl-grid-colResize"></div>'
     }
   };
 
@@ -57,16 +53,16 @@
     this.gLeft = $(options.template.gLeft);
     this.gRight = $(options.template.gRight);
     this.gContainer = $(options.template.gContainer);
-    this.gLeftBody = this.gLeft.find('.xg-body');
-    this.gRightBody = this.gRight.find('.xg-body');
-    this.gRightHead = this.gRight.find('.xg-head');
+    this.gLeftBody = this.gLeft.find('.dl-grid-body');
+    this.gRightBody = this.gRight.find('.dl-grid-body');
+    this.gRightHead = this.gRight.find('.dl-grid-head');
     this.scroll = this.gRight.find("div.scroll");
 
     var lastItem = this.options.colModel[this.options.colModel.length - 1];
     this.cellWidthPercent = typeof lastItem.width === "string" && lastItem.width.indexOf('%') > 0;
     this.$grid.append(
       this.gContainer.append(this.gLeft).append(this.gRight)
-    ).addClass('Grid');
+    ).addClass('dl-grid');
 
     if (options.width === 'auto') {
       options.width = this.$grid.width() - 2;
@@ -101,7 +97,7 @@
     });
     $.each(fixCol, function (i, item) {
       var $cell = makeCell(item);
-      gLeft.find("div.xgh-row").append($cell);
+      gLeft.find("div.dl-grid-head-row").append($cell);
       options.width -= $cell.outerWidth();
     });
 
@@ -109,11 +105,11 @@
 
     $.each(col, function (i, item) {
       item.width = self.cellWidthPercent ? parseFloat(item.width) * 0.01 * (options.width) : item.width;
-      gRight.find('div.xgh-row').append(makeCell(item));
+      gRight.find('div.dl-grid-head-row').append(makeCell(item));
     });
 
     if (options.height !== 'auto') {
-      gContainer.find(".xg-body").parent().height(options.height);
+      gContainer.find(".dl-grid-body").parent().height(options.height);
     }
 
     function makeCell(item) {
@@ -153,7 +149,7 @@
         if (!self.cellContentDiff) {
           self.cellContentDiff = parseInt($cell.css('padding-left'), 10) * 2 + parseInt($cell.css('border-right-width'), 10);
         }
-        $cell.children('.xgb-c-content').html(item[colModel.name]).width(colModel.width - self.cellContentDiff);
+        $cell.children('.dl-grid-body-c-content').html(item[colModel.name]).width(colModel.width - self.cellContentDiff);
       }
     });
     self.buildPage();
@@ -178,7 +174,7 @@
       prevCount = 3,
       start = 1,
       end = pageInfo.pageCount,
-      gPage = $($.xui.utils.template(options.template.page, pageInfo)),
+      gPage = $($.dl.utils.template(options.template.page, pageInfo)),
       $nextli = gPage.find("a.next").parent();
 
     pageInfo.can = {
@@ -214,13 +210,13 @@
       }
     });
     self.options.page.PageIndex = pageInfo.pageIndex;
-    if (self.$grid.find('.xg-page').length === 0) {
+    if (self.$grid.find('.dl-grid-page').length === 0) {
       bindEvent();
     }
-    self.$grid.find('.xg-page').remove().end().append(gPage);
+    self.$grid.find('.dl-grid-page').remove().end().append(gPage);
 
     function bindEvent() {
-      self.$grid.on('click', '.xg-page a:not(.disabled)', function () {
+      self.$grid.on('click', '.dl-grid-page a:not(.disabled)', function () {
         var $this = $(this), nPage = 0;
         if ($this.hasClass('first')) {
           nPage = 1;
@@ -249,12 +245,12 @@
 
     function bindEvent() {
       var info, $document = $(document);
-      $document.on('mousedown', 'div.xg-col-drag', function (e) {
+      $document.on('mousedown', 'div.dl-grid-col-drag', function (e) {
         var $this = $(e.target), index = colResize.children().index(e.target);
         info = {
           startX: e.pageX,
           target: $this,
-          cell: self.gRightHead.find('.xgh-cell').eq(index),
+          cell: self.gRightHead.find('.dl-grid-head-cell').eq(index),
           oLeft: parseInt($this.css("left"), 10),
           n: index,
           diff: 0
@@ -267,8 +263,8 @@
         $document.on('mouseup.GridResize', function () {
           $document.unbind('mousemove.GridResize');
           $document.unbind('mouseup.GridResize');
-          self.gRightBody.width(self.calcRightBodyWidth()).children('.xgb-row').each(function (i, item) {
-            var $bodyCell = $(item).children('.xgb-cell').eq(info.n);
+          self.gRightBody.width(self.calcRightBodyWidth()).children('.dl-grid-body-row').each(function (i, item) {
+            var $bodyCell = $(item).children('.dl-grid-body-cell').eq(info.n);
             $bodyCell.children().outerWidth(info.nWidth - self.cellContentDiff);
           });
           colResize.children().not(info.target).each(function () {
@@ -293,15 +289,15 @@
       }
     }
 
-    if (self.gRight.find('.xg-colResize').length === 0) {
+    if (self.gRight.find('.dl-grid-colResize').length === 0) {
       self.gRight.prepend(colResize);
       bindEvent();
     }
 
-    colResize = self.gRight.find('.xg-colResize').empty().width(self.gRightHead.outerWidth());
+    colResize = self.gRight.find('.dl-grid-colResize').empty().width(self.gRightHead.outerWidth());
 
     gCells.each(function () {
-      var $cell = $(this), $drag = $('<div class="xg-col-drag"></div>');
+      var $cell = $(this), $drag = $('<div class="dl-grid-col-drag"></div>');
       colResize.append($drag);
       left += $cell.outerWidth();
       $drag.css({"left": left - $drag.outerWidth() / 2, "height": height});
@@ -315,15 +311,15 @@
       rowsLength = rows.length;
     $.each(options.colModel, function (i, item) {
       if (item.treeNode) {
-        self.gRightBody.find('.xgb-row').each(function (j) {
+        self.gRightBody.find('.dl-grid-body-row').each(function (j) {
           var $row = $(this),
             $cell = $row.children().eq(i),
             row = self.options.data.rows[j],
             treeNode = row.treeNode;
-          $cell.addClass('xgb-tree xgb-node-p-' + (treeNode.split('-').length - 1)).attr('treeNode', treeNode);
+          $cell.addClass('dl-grid-body-tree dl-grid-body-node-p-' + (treeNode.split('-').length - 1)).attr('treeNode', treeNode);
 
           if (j < rowsLength - 1 && rows[j + 1].treeNode.indexOf(treeNode) >= 0) {
-            $cell.addClass('xgb-node-parent').children('.xgb-c-content').prepend("<a class='xgb-node-toggle fa-minus-square'></a>");
+            $cell.addClass('dl-grid-body-node-parent').children('.dl-grid-body-c-content').prepend("<a class='dl-grid-body-node-toggle fa fa-minus-square'></a>");
           }
         });
       }
@@ -332,7 +328,7 @@
 
   Grid.prototype.calcRightBodyWidth = function () {
     var newTotalWidth = this.cellWidthPercent ? 0 : 30;
-    this.gRightHead.find(".xgh-row:eq(0)").children(".xgh-cell").each(function () {
+    this.gRightHead.find(".dl-grid-head-row:eq(0)").children(".dl-grid-head-cell").each(function () {
       newTotalWidth += $(this).outerWidth();
     });
     return newTotalWidth;
@@ -348,7 +344,7 @@
     });
 
     self.gRightHead.on('click', '.sortable', function () {
-      var $this = $(this), $sorts = $this.find('.xgh-sort'), $asc = $sorts.find('.asc'), $desc = $sorts.find('.desc'), sort = '';
+      var $this = $(this), $sorts = $this.find('.dl-grid-head-sort'), $asc = $sorts.find('.asc'), $desc = $sorts.find('.desc'), sort = '';
       if ($asc.css('visibility') !== "hidden") {
         $asc.css('visibility', 'hidden');
         $desc.css('visibility', 'visible');
@@ -358,17 +354,17 @@
         $desc.css('visibility', 'hidden');
         sort = 'asc';
       }
-      $this.siblings('.sortable').find('.xgh-sort').children().css('visibility', 'visible');
+      $this.siblings('.sortable').find('.dl-grid-head-sort').children().css('visibility', 'visible');
       self.options.page.OrderBy = $this.attr("name") + ' ' + sort;
       self.load();
     });
 
-    self.gRightBody.on('click', 'a.xgb-node-toggle', function () {
+    self.gRightBody.on('click', 'a.dl-grid-body-node-toggle', function () {
       var $this = $(this),
-        $cell = $this.closest('.xgb-cell'),
+        $cell = $this.closest('.dl-grid-body-cell'),
         isOpen = $this.hasClass('fa-minus-square'),
         treeNode = $cell.attr('treeNode'),
-        $childRow = self.gRightBody.find('.xgb-cell[treeNode^=' + treeNode + '-]').parent();
+        $childRow = self.gRightBody.find('.dl-grid-body-cell[treeNode^=' + treeNode + '-]').parent();
       if (isOpen) {
         $this.removeClass('fa-minus-square').addClass('fa-plus-square');
         $childRow.each(function () {
@@ -450,5 +446,6 @@
     $.fn.Grid = old;
     return this;
   };
+});
 
-})(jQuery);
+

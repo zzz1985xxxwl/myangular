@@ -1,0 +1,149 @@
+.dl-grid {
+.cell() {
+  display: table-cell;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  padding: @table-cell-padding;
+  border-right: 1px solid @table-border-color;
+}
+.row() {
+  border-bottom: 1px solid @table-border-color;
+}
+  .dl-grid-container {
+  .clearfix();
+    border: 1px solid @table-border-color;
+    > div {
+      float: left;
+    }
+    .dl-grid-left {
+      .dl-grid-body:after {
+        content: '';
+        height: 30px;
+        display: block;
+      }
+    }
+    .dl-grid-right {
+      overflow: hidden;
+      position: relative;
+      .dl-grid-head {
+        width: 10000px;
+      }
+    }
+  }
+  .hide-scroll {
+    overflow: hidden;
+    &.scroll {
+      overflow: auto;
+    }
+  }
+  .dl-grid-head {
+    .dl-grid-head-row {
+    .row();
+      font-weight: bold;
+    }
+    .dl-grid-head-cell {
+    .cell();
+      &.sortable {
+        cursor: pointer;
+      }
+    }
+  }
+  .dl-grid-body {
+    .dl-grid-body-row {
+    .row();
+      &:hover {
+        background-color: @table-bg-hover;
+      }
+      &:nth-child(even) {
+        background-color: @table-bg-accent;
+        &:hover{
+          background-color: @table-bg-hover;
+        }
+      }
+    }
+    .dl-grid-body-cell {
+      .cell();
+      > .dl-grid-body-c-content {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      a.dl-grid-body-node-toggle {
+        margin-right: 2px;
+        margin-left: -12px;
+      }
+      &.dl-grid-body-node-p-1 .dl-grid-body-c-content {
+        padding-left: 20px;
+      }
+      &.dl-grid-body-node-p-2 .dl-grid-body-c-content {
+        padding-left: 2*20px;
+      }
+      &.dl-grid-body-node-p-3 .dl-grid-body-c-content {
+        padding-left: 3*20px;
+      }
+      &.dl-grid-body-node-p-4 .dl-grid-body-c-content {
+        padding-left: 4*20px;
+      }
+      &.dl-grid-body-node-p-5 .dl-grid-body-c-content {
+        padding-left: 5*20px;
+      }
+      &.dl-grid-body-node-p-6 .dl-grid-body-c-content {
+        padding-left: 6*20px;
+      }
+      &.dl-grid-body-node-p-7 .dl-grid-body-c-content {
+        padding-left: 7*20px;
+      }
+      &.dl-grid-body-node-p-8 .dl-grid-body-c-content {
+        padding-left: 8*20px;
+      }
+      &.dl-grid-body-node-p-9 .dl-grid-body-c-content {
+        padding-left: 9*20px;
+      }
+      &.dl-grid-body-node-p-10 .dl-grid-body-c-content {
+        padding-left: 10*20px;
+      }
+    }
+  }
+
+  .dl-grid-page {
+  .clearfix();
+    margin-top: 8px;
+    > .info {
+      float: left;
+      padding-top: 10px;
+    }
+    > ul.pagination {
+      float: right;
+      margin: 0;
+      a {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .dl-grid-colResize {
+    position: relative;
+    z-index: 100;
+    > .dl-grid-col-drag {
+      position: absolute;
+      width: 5px;
+      cursor: col-resize;
+      &:hover {
+        background-color: @table-border-color;
+      }
+    }
+  }
+
+  .dl-grid-head-sort {
+    position: absolute;
+    top: 18%;
+    right: 2px;
+    a {
+      display: block;
+      height: 5px;
+
+    }
+  }
+
+}
