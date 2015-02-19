@@ -7,5 +7,20 @@ define(['angularAMD'], function (angularAMD) {
         $(element).Grid(scope.gridConfig);
       }
     };
+  }).directive('toggle',function(){
+    return{
+      restrict:'A',
+      link:function(scope,element,attrs,ngModel){
+        if(attrs.toggle!=='dropdown'){
+          return;
+        }
+        if(attrs.hover==="dropdown"){
+          $(element).on('mouseover',function(){
+            $("[data-toggle=dropdown]").parent().removeClass('open');
+            $(element).parent().addClass('open');
+          })
+        }
+      }
+    }
   });
 });

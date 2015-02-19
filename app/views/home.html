@@ -1,29 +1,29 @@
 <h3 class="page-title">
-  Dashboard
-  <small>reports &amp; statistics</small>
+  首页
+  <small>测试</small>
 </h3>
 <div class="page-bar">
   <ul class="page-breadcrumb">
     <li>
       <i class="fa fa-home"></i>
-      <a>Home</a>
+      <a>首页</a>
       <i class="fa fa-angle-right"></i>
     </li>
     <li>
-      <a>Dashboard</a>
+      <a>测试</a>
     </li>
   </ul>
   <div class="page-toolbar">
     <div class="dropdown">
-      <a class="btn grey-salt dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000">
-        Actions <i class="fa fa-angle-down"></i>
+      <a class="btn grey-salt dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+        操作 <i class="fa fa-angle-down"></i>
       </a>
       <ul class="dropdown-menu pull-right" role="menu">
         <li>
-          <a>Action</a>
+          <a>打印</a>
         </li>
         <li>
-          <a>Another action</a>
+          <a>导出</a>
         </li>
         <li>
           <a>Something else here</a>
@@ -43,13 +43,28 @@
     <div class="portlet box blue-hoki">
       <div class="portlet-title">
         <div class="caption">
-          <i class="fa fa-globe"></i>Datatable with TableTools
+          <i class="fa fa-globe"></i>订单
         </div>
         <div class="tools"><a class="fa fa-refresh" title="刷新"></a>
         </div>
       </div>
       <div class="portlet-body">
-        <div data-dl-grid></div>
+        <div class="row margin-bottom-10">
+          <div class="col-md-12">
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="exampleInputName2">Name</label>
+                <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail2">Email</label>
+                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
+              </div>
+              <button type="submit" class="btn blue-hoki"><i class="fa fa-search"></i>查询</button>
+            </form>
+          </div>
+        </div>
+          <div data-dl-grid></div>
       </div>
     </div>
   </div>
