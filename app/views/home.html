@@ -45,29 +45,57 @@
         <div class="caption">
           <i class="fa fa-globe"></i>订单
         </div>
-        <div class="tools"><a class="fa fa-refresh" title="刷新"></a>
+        <div class="tools">
+          <a  class="fa fa-chevron-down"></a>
+          <a  class="fa fa-gear" >
+          </a>
+          <a  class="fa fa-refresh" title="刷新">
+          </a>
+          <a  class="fa fa-close" title="关闭">
+          </a>
         </div>
       </div>
       <div class="portlet-body">
         <div class="row margin-bottom-10">
           <div class="col-md-12">
-            <form class="form-inline">
+            <div class="form-inline">
               <div class="form-group">
-                <label for="exampleInputName2">Name</label>
-                <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+                <label for="exampleInputName">Name</label>
+                <input type="text" class="form-control" id="exampleInputName" placeholder="Jane Doe"
+                       ng-model="searchParam.name">
               </div>
-              <div class="form-group">
-                <label for="exampleInputEmail2">Email</label>
-                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
-              </div>
-              <button type="submit" class="btn blue-hoki"><i class="fa fa-search"></i>查询</button>
-            </form>
+              <button ng-click="search()" class="btn blue-hoki"><i class="fa fa-search"></i>查询</button>
+            </div>
           </div>
         </div>
-          <div data-dl-grid></div>
+        <div data-dl-grid="grid"></div>
       </div>
     </div>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="portlet box red">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-globe"></i>订单
+        </div>
+        <div class="tools"><a class="fa fa-refresh" title="刷新" ng-click="hello()"></a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <div data-dl-grid="grid2"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Button trigger modal -->
+<a type="button" class="btn btn-primary" data-toggle="modal" href="edit.html">
+  Launch demo modal
+</a>
+<div data-edit-model>
+
 </div>
 

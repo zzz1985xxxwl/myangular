@@ -133,8 +133,8 @@ define(['util'], function () {
     self.gLeftBody.empty();
 
     $.each(options.data.rows, function (i, item) {
-      var $rowLeft = $(options.template.body.row),
-        $rowRight = $(options.template.body.row);
+      var $rowLeft = $(options.template.body.row).data("item", item),
+        $rowRight = $(options.template.body.row).data("item", item);
       self.gRightBody.append($rowRight);
       if (options.colModel[0].fix) {
         self.gLeftBody.append($rowLeft);
@@ -142,14 +142,20 @@ define(['util'], function () {
 
       for (var j = 0, l = options.colModel.length; j < l; j++) {
         var colModel = options.colModel[j],
-          $cell = $(options.template.body.cell);
-        var $row = colModel.fix ? $rowLeft : $rowRight;
+          $cell = $(options.template.body.cell),
+          $row = colModel.fix ? $rowLeft : $rowRight,
+          content;
         $row.append($cell);
         $cell.css("text-align", item.bodyAlign);
         if (!self.cellContentDiff) {
           self.cellContentDiff = parseInt($cell.css('padding-left'), 10) * 2 + parseInt($cell.css('border-right-width'), 10);
         }
-        $cell.children('.dl-grid-body-c-content').html(item[colModel.name]).width(colModel.width - self.cellContentDiff);
+        if (colModel.content) {
+          content = $.dl.utils.template(colModel.content, item);
+        } else {
+          content = item[colModel.name];
+        }
+        $cell.children('.dl-grid-body-c-content').html(content).width(colModel.width - self.cellContentDiff);
       }
     });
     self.buildPage();
@@ -243,55 +249,9 @@ define(['util'], function () {
       left = -scrollLeft,
       height = self.gRight.height();
 
-    function bindEvent() {
-      var info, $document = $(document);
-      $document.on('mousedown', 'div.dl-grid-col-drag', function (e) {
-        var $this = $(e.target), index = colResize.children().index(e.target);
-        info = {
-          startX: e.pageX,
-          target: $this,
-          cell: self.gRightHead.find('.dl-grid-head-cell').eq(index),
-          oLeft: parseInt($this.css("left"), 10),
-          n: index,
-          diff: 0
-        };
-        info.oWidth = info.cell.outerWidth();
-        mouseMove();
-        mouseUp();
-      });
-      function mouseUp() {
-        $document.on('mouseup.GridResize', function () {
-          $document.unbind('mousemove.GridResize');
-          $document.unbind('mouseup.GridResize');
-          self.gRightBody.width(self.calcRightBodyWidth()).children('.dl-grid-body-row').each(function (i, item) {
-            var $bodyCell = $(item).children('.dl-grid-body-cell').eq(info.n);
-            $bodyCell.children().outerWidth(info.nWidth - self.cellContentDiff);
-          });
-          colResize.children().not(info.target).each(function () {
-            $(this).css('left', parseInt($(this).css("left"), 10) + info.diff);
-          });
-          self.options.colModel[info.n].width = info.cell.outerWidth();
-        });
-      }
-
-      function mouseMove() {
-        $document.on('mousemove.GridResize', function (e) {
-          var diff = e.pageX - info.startX,
-            nLeft = info.oLeft + diff,
-            nWidth = info.oWidth + diff;
-          if (nWidth > self.options.cellMinWidth) {
-            info.target.css('left', nLeft);
-            info.cell.outerWidth(nWidth);
-            info.nWidth = nWidth;
-            info.diff = diff;
-          }
-        });
-      }
-    }
-
     if (self.gRight.find('.dl-grid-colResize').length === 0) {
       self.gRight.prepend(colResize);
-      bindEvent();
+      self.bindColResizeEvent();
     }
 
     colResize = self.gRight.find('.dl-grid-colResize').empty().width(self.gRightHead.outerWidth());
@@ -302,6 +262,55 @@ define(['util'], function () {
       left += $cell.outerWidth();
       $drag.css({"left": left - $drag.outerWidth() / 2, "height": height});
     });
+  };
+
+  Grid.prototype.bindColResizeEvent = function () {
+    var info, $document = $(document);
+    $document.on('mousedown', 'div.dl-grid-col-drag', function (e) {
+      var $this = $(e.target), grid = $this.closest('.dl-grid').data("dl.Grid"), index = $this.parent().children().index(e.target);
+      info = {
+        startX: e.pageX,
+        target: $this,
+        cell: grid.gRightHead.find('.dl-grid-head-cell').eq(index),
+        oLeft: parseInt($this.css("left"), 10),
+        n: index,
+        diff: 0
+      };
+      info.oWidth = info.cell.outerWidth();
+      mouseMove(grid);
+      mouseUp(grid);
+    });
+    function mouseUp(grid) {
+      $document.on('mouseup.GridResize', function () {
+        $document.unbind('mousemove.GridResize');
+        $document.unbind('mouseup.GridResize');
+        grid.gRightBody.width(grid.calcRightBodyWidth()).children('.dl-grid-body-row').each(function (i, item) {
+          var $bodyCell = $(item).children('.dl-grid-body-cell').eq(info.n);
+          $bodyCell.children().outerWidth(info.nWidth - grid.cellContentDiff);
+        });
+        var left = 0;
+        grid.gRightHead.find('.dl-grid-head-cell').each(function (i, item) {
+          left += $(item).outerWidth();
+          info.target.parent().children().eq(i).css('left', left - 2.5);
+        });
+        grid.options.colModel[info.n].width = info.cell.outerWidth();
+      });
+    }
+
+    function mouseMove(grid) {
+      $document.on('mousemove.GridResize', function (e) {
+        var diff = e.pageX - info.startX,
+          nLeft = info.oLeft + diff,
+          nWidth = info.oWidth + diff;
+        if (nWidth > grid.options.cellMinWidth) {
+          info.target.css('left', nLeft);
+          info.cell.outerWidth(nWidth);
+          info.nWidth = nWidth;
+          info.diff = diff;
+        }
+      });
+    }
+
   };
 
   Grid.prototype.buildTreeNode = function () {
@@ -327,7 +336,7 @@ define(['util'], function () {
   };
 
   Grid.prototype.calcRightBodyWidth = function () {
-    var newTotalWidth = this.cellWidthPercent ? 0 : 30;
+    var newTotalWidth = 0;//this.cellWidthPercent ? 0 : 0;
     this.gRightHead.find(".dl-grid-head-row:eq(0)").children(".dl-grid-head-cell").each(function () {
       newTotalWidth += $(this).outerWidth();
     });
@@ -394,7 +403,7 @@ define(['util'], function () {
     if (typeof params === "function") {
       params = params();
     }
-    if (params.length) {
+    if (params) {
       $.extend(param, params);
     }
     $.ajax({
@@ -404,6 +413,9 @@ define(['util'], function () {
       dataType: 'json',
       success: function (data) {
         self.addData(data);
+        if(self.options.onSuccess) {
+          self.options.onSuccess();
+        }
       },
       error: function (XMLHttpRequest, textStatus, errorThrown) {
         try {
@@ -419,6 +431,10 @@ define(['util'], function () {
   Grid.prototype.addData = function (data) {
     this.options.data = data;
     this.buildBody();
+  };
+
+  Grid.prototype.getData = function () {
+    return this.options.data;
   };
 
   function Plugin(option, args) {

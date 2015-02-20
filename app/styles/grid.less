@@ -1,17 +1,17 @@
 .dl-grid {
-.cell() {
-  display: table-cell;
-  overflow: hidden;
-  white-space: nowrap;
-  position: relative;
-  padding: @table-cell-padding;
-  border-right: 1px solid @table-border-color;
-}
-.row() {
-  border-bottom: 1px solid @table-border-color;
-}
+  .cell() {
+    display: table-cell;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    padding: @table-cell-padding;
+    border-right: 1px solid @table-border-color;
+  }
+  .row() {
+    border-bottom: 1px solid @table-border-color;
+  }
   .dl-grid-container {
-  .clearfix();
+    .clearfix();
     border: 1px solid @table-border-color;
     > div {
       float: left;
@@ -39,11 +39,11 @@
   }
   .dl-grid-head {
     .dl-grid-head-row {
-    .row();
+      .row();
       font-weight: bold;
     }
     .dl-grid-head-cell {
-    .cell();
+      .cell();
       &.sortable {
         cursor: pointer;
       }
@@ -51,13 +51,13 @@
   }
   .dl-grid-body {
     .dl-grid-body-row {
-    .row();
+      .row();
       &:hover {
         background-color: @table-bg-hover;
       }
       &:nth-child(even) {
         background-color: @table-bg-accent;
-        &:hover{
+        &:hover {
           background-color: @table-bg-hover;
         }
       }
@@ -68,6 +68,10 @@
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+        height: 20px;
+        >a{
+          margin-right: 8px;
+        }
       }
       a.dl-grid-body-node-toggle {
         margin-right: 2px;
@@ -107,7 +111,7 @@
   }
 
   .dl-grid-page {
-  .clearfix();
+    .clearfix();
     margin-top: 8px;
     > .info {
       float: left;
