@@ -9,8 +9,9 @@ require.config({
     'angular-cookies': '../../bower_components/angular-cookies/angular-cookies',
     'angular-resource': '../../bower_components/angular-resource/angular-resource',
     'angular-sanitize': '../../bower_components/angular-sanitize/angular-sanitize',
-    'bootstrap': '../../bower_components/bootstrap/dist/js/bootstrap',
+    'angular-bootstrap': '../../bower_components/angular-bootstrap/ui-bootstrap-tpls',
     'angularAMD': '../../bower_components/angularAMD/angularAMD',
+    'angular-bootstrap-show-errors':'../../bower_components/angular-bootstrap-show-errors/src/showErrors',
     'util':'plugins/util'
   },
 
@@ -22,7 +23,8 @@ require.config({
     'angular-cookies':['angular'],
     'angular-resource':['angular'],
     'angular-sanitize':['angular'],
-    'bootstrap':['jquery'],
+    'angular-bootstrap':['angular'],
+    'angular-bootstrap-show-errors':['angular'],
     'util':['jquery']
   },
 

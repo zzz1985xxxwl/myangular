@@ -87,7 +87,8 @@ define(['util'], function () {
       gLeft = self.gLeft,
       gRight = self.gRight,
       gContainer = self.gContainer,
-      fixCol = [], col = [];
+      fixCol = [], col = [],
+      leftWidth = 0;
     $.each(options.colModel, function (i, item) {
       if (item.fix) {
         fixCol.push(item);
@@ -98,11 +99,11 @@ define(['util'], function () {
     $.each(fixCol, function (i, item) {
       var $cell = makeCell(item);
       gLeft.find("div.dl-grid-head-row").append($cell);
-      options.width -= $cell.outerWidth();
+      leftWidth += $cell.outerWidth();
     });
-
-    gRight.find('.hide-scroll').andSelf().width(options.width);
-
+    options.width -= leftWidth;
+    gRight.find('.hide-scroll').andSelf().width(options.width + 1);
+    gRight.css('margin-left', leftWidth);
     $.each(col, function (i, item) {
       item.width = self.cellWidthPercent ? parseFloat(item.width) * 0.01 * (options.width) : item.width;
       gRight.find('div.dl-grid-head-row').append(makeCell(item));
@@ -413,7 +414,7 @@ define(['util'], function () {
       dataType: 'json',
       success: function (data) {
         self.addData(data);
-        if(self.options.onSuccess) {
+        if (self.options.onSuccess) {
           self.options.onSuccess();
         }
       },

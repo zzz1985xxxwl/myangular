@@ -6,12 +6,15 @@ define(['angularAMD',
   'plugins/grid',
   'plugins/notify',
   'controllers/sidebar_ctrl',
+  'controllers/login_ctrl',
   'directives/pageContentHeight',
   'directives/plugins',
+  'directives/validation',
   'animation/slideDown',
   'angular-resource',
-  'bootstrap'], function (angularAMD) {
-  var app = angular.module('dl-app', ['ngRoute','ngAnimate','ngCookies','ngResource']);
+  'angular-bootstrap',
+  'angular-bootstrap-show-errors'], function (angularAMD) {
+  var app = angular.module('dl-app', ['ngRoute','ngAnimate','ngCookies','ngResource','ui.bootstrap','ui.bootstrap.showErrors']);
 
   app.config(function ($routeProvider) {
     $routeProvider

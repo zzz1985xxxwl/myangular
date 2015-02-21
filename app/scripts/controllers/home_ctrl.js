@@ -1,7 +1,30 @@
-
-define(['app'], function () {
+define(['angularAMD'], function (angularAMD) {
   'use strict';
-  return ['$scope','$compile', function ($scope) {
+  angularAMD.controller('EditController', function ($scope, $modalInstance, data) {
+
+    console.log(data);
+    $scope.item = {
+      email: '',
+      password:'',
+      number:''
+    };
+    $scope.ok = function () {
+      $scope.$broadcast('show-errors-check-validity');
+      if ($scope.myForm.$valid) {
+        $modalInstance.close($scope.item);
+      }
+    };
+
+    $scope.cancel = function () {
+      $modalInstance.dismiss('cancel');
+    };
+
+    $scope.reset = function() {
+      $scope.$broadcast('show-errors-reset');
+    }
+  });
+
+  return ['$scope', '$modal', function ($scope, $modal) {
     $scope.searchParam = {
       name: ""
     };
@@ -29,8 +52,8 @@ define(['app'], function () {
       orderBy: 'col1 desc'
     };
 
-    $scope.hello=function(){
-      console.log(123);
+    $scope.hello = function () {
+      $scope.open('lg');
     };
     $scope.grid2 = {
       colModel: [
@@ -58,6 +81,25 @@ define(['app'], function () {
       },
       url: "/grid-data.json",
       orderBy: 'col1 desc'
+    };
+    $scope.items = ['item1', 'item2', 'item3'];
+    $scope.open = function (size) {
+
+      var modalInstance = $modal.open({
+        templateUrl: 'views/edit.html',
+        controller: 'EditController',
+        size: size,
+        resolve: {
+          data: function () {
+            return {name: 1};
+          }
+        }
+      });
+
+      modalInstance.result.then(function (item) {
+       console.log(item)
+      }, function () {
+      });
     };
 
   }];

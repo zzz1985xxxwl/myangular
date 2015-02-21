@@ -4,7 +4,7 @@ define(['angularAMD', 'angular-animate'], function (angularAMD) {
     return {
       restrict: 'C',
       link: function (scope, element) {
-        var heightByWindow=$(window).height() - 79,min=700;
+        var heightByWindow=$(window).height(),min=900;
         $(element).css('min-height', heightByWindow>min?heightByWindow:min);
       }
     };
