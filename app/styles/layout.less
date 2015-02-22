@@ -3,6 +3,8 @@ body {
   color: #333333;
   font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "WenQuanYi Micro Hei", sans-serif;
   direction: ltr;
+  min-width: @screen-xs;
+  background-color: @black-bg;
 }
 
 a {
@@ -19,23 +21,6 @@ a {
 
 .relative {
   position: relative;
-}
-
-/***
-Page header
-***/
-header {
-  height: @header-height;
-  background-color: @black-bg;
-  .page-logo {
-    float: left;
-    display: block;
-    width: 235px;
-    height: 100%;
-    padding-left: 20px;
-    padding-right: 20px;
-    line-height: @header-height;
-  }
 }
 
 /***
@@ -181,6 +166,12 @@ Page content
 
 .page-sidebar-closed.page-sidebar-reversed.page-sidebar-hide .page-content-wrapper .page-content {
   margin-right: 0 !important;
+}
+
+@media (max-width: @screen-sm) {
+  .page-content-wrapper .page-content {
+    margin-left: 45px !important;
+  }
 }
 
 

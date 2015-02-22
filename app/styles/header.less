@@ -1,7 +1,23 @@
+/***
+Page header
+***/
+header {
+  height: @header-height;
+  background-color: @black-bg;
+  .page-logo {
+    float: left;
+    display: block;
+    height: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    line-height: @header-height;
+  }
+}
 header .top-menu {
   margin-right: 20px;
   .nav {
     > li {
+      float: left;
       > a {
         color: @green-font-def;
         padding: @header-height/2-11 12px;

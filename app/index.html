@@ -17,8 +17,7 @@
 
 <body ng-class="{'page-sidebar-closed':sideBarClosed}">
 <!--[if lt IE 10]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
-  your browser</a> to improve your experience.</p>
+<p class="browsehappy">你的浏览器版本太旧 . 请 <a href="http://browsehappy.com/">点击这里 </a> 升级浏览器</p>
 <![endif]-->
 <header>
   <div class="page-logo">
@@ -27,9 +26,9 @@
     </a>
   </div>
   <div class="top-menu pull-right">
-    <ul class="nav navbar-nav  pull-right">
+    <ul class="nav pull-right">
       <li class="dropdown dropdown-extended" dropdown>
-        <a  class="dropdown-toggle" dropdown-toggle>
+        <a class="dropdown-toggle" dropdown-toggle>
           <i class="fa fa-bell-o"></i>
           <span class="badge badge-info">7</span>
         </a>
@@ -65,7 +64,7 @@
         </ul>
       </li>
       <li class="dropdown dropdown-extended" dropdown>
-        <a class="dropdown-toggle"  dropdown-toggle>
+        <a class="dropdown-toggle" dropdown-toggle>
           <i class="fa fa-envelope-o"></i>
           <span class="badge badge-danger">7</span>
         </a>
@@ -79,15 +78,15 @@
         </a>
         <ul class="dropdown-menu dropdown-menu-default">
           <li>
-            <a >
+            <a>
               <i class="fa fa-user"></i> 用户中心 </a>
           </li>
           <li>
-            <a >
+            <a>
               <i class="fa fa-calendar"></i> 我的日历 </a>
           </li>
           <li>
-            <a >
+            <a>
               <i class="fa fa-tasks"></i> 任务 <span class="badge badge-success">
 							7 </span>
             </a>
@@ -95,17 +94,17 @@
           <li class="divider">
           </li>
           <li>
-            <a >
+            <a>
               <i class="fa fa-lock"></i> 修改密码 </a>
           </li>
           <li>
-            <a >
+            <a>
               <i class="fa fa-sign-out"></i> 退出 </a>
           </li>
         </ul>
       </li>
       <li>
-        <a >
+        <a>
           <i class="fa fa-sign-out"></i>
         </a>
       </li>
@@ -114,10 +113,8 @@
 </header>
 <div class="page-container">
   <div class="page-sidebar-wrapper" ng-controller="SidebarController">
-    <div class="page-sidebar navbar-collapse collapse">
-      <ul ng-class="{'page-sidebar-menu-closed':sideBarClosed}" class="page-sidebar-menu" data-keep-expanded="false"
-          data-auto-scroll="true"
-          data-slide-speed="200">
+    <div class="page-sidebar navbar-collapse">
+      <ul class="page-sidebar-menu">
         <li class="sidebar-toggler-wrapper">
           <div class="sidebar-toggler fa fa-navicon" ng-click="showSidebar()">
           </div>
@@ -146,7 +143,7 @@
           </a>
           <ul class="sub-menu" ng-class="{'slide-down':item.open}">
             <li ng-repeat="child in item.child" ng-class="{active:child.active}">
-              <a  ng-click="menuChildClick(child)">
+              <a ng-click="menuChildClick(child)">
                 <i class="fa fa-{{child.icon}}"></i>
                 <span ng-if="child.badge!=''" class="badge badge-success" ng-bind="child.badge"></span>
                 <span ng-bind="child.name"></span></a>
