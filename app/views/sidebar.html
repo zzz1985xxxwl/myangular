@@ -1,0 +1,39 @@
+<div class="page-sidebar navbar-collapse">
+  <ul class="page-sidebar-menu">
+    <li class="sidebar-toggler-wrapper">
+      <div class="sidebar-toggler fa fa-navicon" ng-click="showSidebar()">
+      </div>
+    </li>
+    <li class="sidebar-search-wrapper">
+      <div class="sidebar-search" ng-class="{'open':sideBarSearchOpen}">
+        <a class="remove" ng-click="closeSearch()">
+          <i class="fa fa-close"></i>
+        </a>
+
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search...">
+							<span class="input-group-btn">
+							<a class="btn" ng-click="showSearch()"><i class="fa fa-search"></i></a>
+							</span>
+        </div>
+      </div>
+    </li>
+    <li ng-repeat="item in sidebar" ng-class="{active:item.active,open:item.open}">
+      <a class="toggle" ng-click="menuParentClick(item)">
+        <i class="fa fa-{{item.icon}}"></i>
+        <span class="title" ng-bind="item.name"></span>
+        <span class="selected"></span>
+        <span class="arrow" ng-class="{open:item.open}"></span>
+        <span ng-if="item.badge!=''" class="badge badge-warning" ng-bind="item.badge"></span>
+      </a>
+      <ul class="sub-menu" ng-class="{'slide-down':item.open}">
+        <li ng-repeat="child in item.child" ng-class="{active:child.active}">
+          <a ng-click="menuChildClick(child)" href="#/{{child.url}}">
+            <i class="fa fa-{{child.icon}}"></i>
+            <span ng-if="child.badge!=''" class="badge badge-success" ng-bind="child.badge"></span>
+            <span ng-bind="child.name"></span></a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

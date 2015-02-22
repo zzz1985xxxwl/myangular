@@ -14,12 +14,14 @@ define(['angularAMD',
   'angular-resource',
   'angular-bootstrap',
   'angular-bootstrap-show-errors'], function (angularAMD) {
-  var app = angular.module('dl-app', ['ngRoute','ngAnimate','ngCookies','ngResource','ui.bootstrap','ui.bootstrap.showErrors']);
+  var app = angular.module('dl-app', ['ngRoute', 'ngAnimate', 'ngCookies', 'ngResource', 'ui.bootstrap', 'ui.bootstrap.showErrors']);
 
   app.config(function ($routeProvider) {
     $routeProvider
       .when('/home', angularAMD.route({
-        templateUrl: 'views/home.html', controllerUrl: 'controllers/home_ctrl', navTab: 'home'
+        templateUrl: 'views/home.html', controllerUrl: 'controllers/home_ctrl', nav: 'home'
+      })).when('/table', angularAMD.route({
+        templateUrl: 'views/table.html', controllerUrl: 'controllers/table_ctrl', nav: 'table'
       }))
       .otherwise({redirectTo: '/home'});
   });

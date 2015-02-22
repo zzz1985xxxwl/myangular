@@ -1,8 +1,9 @@
 define(['angularAMD'], function (angularAMD) {
   'use strict';
-  angularAMD.controller('SidebarController', ['$scope', '$rootScope', function ($scope, $rootScope) {
+  angularAMD.controller('SidebarController', ['$scope', '$rootScope','$route' ,function ($scope, $rootScope,$route) {
     $rootScope.sideBarClosed = false;
     $scope.sideBarSearchOpen = false;
+    console.log($route.current.nav);
     $scope.sidebar = [
       {
         name: 'Home',
@@ -11,8 +12,8 @@ define(['angularAMD'], function (angularAMD) {
         open: true,
         active: true,
         child: [
-          {name: 'home1', icon: 'home', badge: '1', url: '', active: true},
-          {name: 'home1', icon: 'home', badge: '1', url: '', active: false},
+          {name: 'home1', icon: 'home', badge: '1', url: 'home', active: true},
+          {name: 'table', icon: 'home', badge: '1', url: 'table', active: false},
           {name: 'home1', icon: 'home', badge: '', url: '', active: false}
         ]
       },
@@ -34,6 +35,11 @@ define(['angularAMD'], function (angularAMD) {
         ]
       }
     ];
+    $scope.sidebar.forEach(function (sidebarItem) {
+      sidebarItem.child.forEach(function (item) {
+         item.active=item.url ==$route.current.nav
+      });
+    });
     $scope.showSidebar = function () {
       $rootScope.sideBarClosed = !$rootScope.sideBarClosed;
     };
@@ -67,7 +73,13 @@ define(['angularAMD'], function (angularAMD) {
       });
       item.active = active;
     };
-  }]);
+  }]).directive('sideBar', function () {
+    return {
+      restrict: 'A',
+      controller: 'SidebarController',
+      templateUrl: 'views/sidebar.html'
+    };
+  });
 
 });
 
