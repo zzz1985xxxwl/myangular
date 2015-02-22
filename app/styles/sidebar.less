@@ -68,7 +68,7 @@
         i {
           text-shadow: none;
           top: 3px;
-          margin-left: 1px;
+          margin-left: -3px;
           margin-right: 4px;
           color: @sidebar-hover-icon;
         }
@@ -134,7 +134,7 @@
         display: block;
         float: right;
         position: absolute;
-        right: 0;
+        right: -1px;
         top: 8px;
         background: none;
         width: 0;
@@ -302,7 +302,13 @@
             height: auto;
             background-color: @black-lighter;
             color: @green-font-def;
-            &::-moz-placeholder,  &::-webkit-input-placeholder {
+            &::-moz-placeholder {
+              color: @font-search-control;
+            }
+            &::-webkit-input-placeholder{
+              color: @font-search-control;
+            }
+            &::-ms-input-placeholder{
               color: @font-search-control;
             }
           }
@@ -488,7 +494,7 @@
     }
   }
   .sidebar-search.open {
-    height: 41px;
+    height: 39px;
     margin-top: 14px;
     margin-bottom: 14px;
     position: relative;
@@ -496,6 +502,7 @@
       display: block;
       position: absolute;
       top: 10px;
+      left:-6px;
     }
     .input-group {
       width: 210px;

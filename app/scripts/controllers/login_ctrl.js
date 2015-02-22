@@ -7,7 +7,9 @@ define(['angularAMD'], function (angularAMD) {
       remember: false
     };
     $scope.login = function () {
-      location.href = '/';
+      if($scope.loginForm.$valid){
+        location.href = '/';
+      }
     }
   }]);
 });
