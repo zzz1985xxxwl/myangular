@@ -23,6 +23,7 @@ define(['util'], function () {
     width: 'auto',
     height: 'auto',
     cellMinWidth: 50,
+    checkbox: true,
     onSuccess: null,
     onError: null,
     template: {
@@ -56,6 +57,7 @@ define(['util'], function () {
     this.gLeftBody = this.gLeft.find('.dl-grid-body');
     this.gRightBody = this.gRight.find('.dl-grid-body');
     this.gRightHead = this.gRight.find('.dl-grid-head');
+    this.gLeftHead = this.gLeft.find('.dl-grid-head');
     this.scroll = this.gRight.find("div.scroll");
 
     var lastItem = this.options.colModel[this.options.colModel.length - 1];
@@ -71,13 +73,26 @@ define(['util'], function () {
   };
 
   Grid.prototype.buildTable = function () {
+    this.addCheckboxColumn();
     this.buildHead();
-    this.bindEvent();
+    this._bindEvent();
 
     if (this.options.autoLoad && this.options.url !== '') {
       this.load(1);
     } else if (this.options.data) {
       this.buildBody();
+    }
+  };
+
+  Grid.prototype.addCheckboxColumn = function () {
+    if (this.options.checkbox) {
+      this.options.colModel.unshift({
+        display: '<input type="checkbox"/><a class="fa fa-edit"></a>',
+        displayAlign: 'center',
+        width:50,
+        name: 'checkbox',
+        fix: true
+      });
     }
   };
 
@@ -105,7 +120,7 @@ define(['util'], function () {
     gRight.find('.hide-scroll').andSelf().width(options.width + 1);
     gRight.css('margin-left', leftWidth);
     $.each(col, function (i, item) {
-      item.width = self.cellWidthPercent ? parseFloat(item.width) * 0.01 * (options.width) : item.width;
+      item.width = self.cellWidthPercent ? Math.ceil(parseFloat(item.width) * 0.01 * (options.width)) : item.width;
       gRight.find('div.dl-grid-head-row').append(makeCell(item));
     });
 
@@ -145,15 +160,18 @@ define(['util'], function () {
         var colModel = options.colModel[j],
           $cell = $(options.template.body.cell),
           $row = colModel.fix ? $rowLeft : $rowRight,
-          content;
+          content='';
         $row.append($cell);
-        $cell.css("text-align", item.bodyAlign);
+        $cell.css('text-align', item.bodyAlign);
         if (!self.cellContentDiff) {
           self.cellContentDiff = parseInt($cell.css('padding-left'), 10) * 2 + parseInt($cell.css('border-right-width'), 10);
         }
-        if (colModel.content) {
+        if (colModel.name === 'checkbox') {
+          content = '<input type="checkbox"/>';
+        }
+        else if (colModel.content) {
           content = $.dl.utils.template(colModel.content, item);
-        } else {
+        } else if(colModel.name){
           content = item[colModel.name];
         }
         $cell.children('.dl-grid-body-c-content').html(content).width(colModel.width - self.cellContentDiff);
@@ -318,12 +336,16 @@ define(['util'], function () {
     var self = this,
       options = self.options,
       rows = self.options.data.rows,
-      rowsLength = rows.length;
+      rowsLength = rows.length,
+      leftIndex = 0,
+      rightIndex = 0;
     $.each(options.colModel, function (i, item) {
+      var colIndex = item.fix ? leftIndex++ : rightIndex++;
       if (item.treeNode) {
-        self.gRightBody.find('.dl-grid-body-row').each(function (j) {
+        var body = item.fix ? self.gLeftBody : self.gRightBody;
+        body.find('.dl-grid-body-row').each(function (j) {
           var $row = $(this),
-            $cell = $row.children().eq(i),
+            $cell = $row.children().eq(colIndex),
             row = self.options.data.rows[j],
             treeNode = row.treeNode;
           $cell.addClass('dl-grid-body-tree dl-grid-body-node-p-' + (treeNode.split('-').length - 1)).attr('treeNode', treeNode);
@@ -344,7 +366,7 @@ define(['util'], function () {
     return newTotalWidth;
   };
 
-  Grid.prototype.bindEvent = function () {
+  Grid.prototype._bindEvent = function () {
     var self = this;
     self.scroll.scroll(function () {
       var $this = $(this);
@@ -352,7 +374,6 @@ define(['util'], function () {
       self.gLeftBody.parent().scrollTop($this.scrollTop());
       self.buildColReSize();
     });
-
     self.gRightHead.on('click', '.sortable', function () {
       var $this = $(this), $sorts = $this.find('.dl-grid-head-sort'), $asc = $sorts.find('.asc'), $desc = $sorts.find('.desc'), sort = '';
       if ($asc.css('visibility') !== "hidden") {
@@ -368,7 +389,6 @@ define(['util'], function () {
       self.options.page.OrderBy = $this.attr("name") + ' ' + sort;
       self.load();
     });
-
     self.gRightBody.on('click', 'a.dl-grid-body-node-toggle', function () {
       var $this = $(this),
         $cell = $this.closest('.dl-grid-body-cell'),
@@ -390,6 +410,18 @@ define(['util'], function () {
           }
         });
       }
+    });
+    self.gLeftHead.on('click', 'input:checkbox', function () {
+      var $checkbox = $(this),
+        checked = $checkbox.is(':checked'),
+        child = $checkbox.closest('div.dl-grid-head').next().find(':checkbox');
+      child.prop('checked', checked);
+    });
+    self.gLeftBody.on('click','input:checkbox',function(){
+      var $checkbox = $(this),
+        body = $checkbox.closest('div.dl-grid-body'),
+        checked = body.find(':checked').length===body.find(':checkbox').length;
+      body.parent().prev().find(':checkbox').prop('checked', checked);
     });
   };
 

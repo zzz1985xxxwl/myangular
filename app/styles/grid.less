@@ -1,4 +1,10 @@
 .dl-grid {
+  input[type=checkbox]{
+    float: left;
+  }
+  a{
+    color:@font-search-control;
+  }
   .cell() {
     display: table-cell;
     overflow: hidden;
@@ -17,9 +23,10 @@
       position: absolute;
     }
     .dl-grid-left {
+      background-color:  @table-bg-hover;
       .dl-grid-body:after {
         content: '';
-        height: 30px;
+        //height: 30px;
         display: block;
       }
     }
@@ -38,6 +45,9 @@
     }
   }
   .dl-grid-head {
+    input[type=checkbox]{
+      margin-right: 8px;
+    }
     .dl-grid-head-row {
       .row();
       font-weight: bold;

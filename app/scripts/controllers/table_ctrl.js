@@ -33,13 +33,13 @@ define(['angularAMD'], function (angularAMD) {
     };
     $scope.grid = {
       colModel: [
-        {display: 'Col1', displayAlign: 'center', width: '25%', name: 'Col1', sortable: true, treeNode: true},
-        {display: 'Col2', displayAlign: 'center', width: '25%', name: 'Col2', align: 'left', sortable: true},
-        {display: 'Col3', displayAlign: 'center', width: '25%', name: 'Col3', align: 'left'},
+        {display: 'Col1', displayAlign: 'center', width: '200', name: 'Col1', sortable: true, treeNode: true},
+        {display: 'Col2', displayAlign: 'center', width: '200', name: 'Col2', align: 'left', sortable: true},
+        {display: 'Col3', displayAlign: 'center', width: '100', name: 'Col3', align: 'left'},
         {
           display: 'Col4',
           displayAlign: 'center',
-          width: '25%',
+          width: '100',
           name: 'Col4',
           align: 'left',
           content: '<a ng-click="hello()">delete{{Col4}}</a>'
@@ -49,7 +49,8 @@ define(['angularAMD'], function (angularAMD) {
         return $scope.searchParam;
       },
       url: "/grid-data.json",
-      orderBy: 'col1 desc'
+      orderBy: 'col1 desc',
+      height:370
     };
 
     $scope.hello = function () {
@@ -57,7 +58,7 @@ define(['angularAMD'], function (angularAMD) {
     };
     $scope.grid2 = {
       colModel: [
-        {display: 'Col1', displayAlign: 'center', width: 100, name: 'Col1', sortable: true, fix: true},
+        {display: 'Col1', displayAlign: 'center', width: 100, name: 'Col1', sortable: true},
         {display: 'Col2', displayAlign: 'center', width: 200, name: 'Col2', align: 'left', sortable: true},
         {
           display: 'Col3',
