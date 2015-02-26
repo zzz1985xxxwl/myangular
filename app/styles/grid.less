@@ -5,13 +5,20 @@
   a{
     color:@font-search-control;
   }
+  i{
+    width: 1.25em;
+  }
   .cell() {
-    display: table-cell;
-    overflow: hidden;
-    white-space: nowrap;
+    display: inline-block;
     position: relative;
     padding: @table-cell-padding;
     border-right: 1px solid @table-border-color;
+  }
+  .content(){
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    height: 20px;
   }
   .row() {
     border-bottom: 1px solid @table-border-color;
@@ -54,6 +61,7 @@
     }
     .dl-grid-head-cell {
       .cell();
+      line-height: 23px;
       &.sortable {
         cursor: pointer;
       }
@@ -75,10 +83,7 @@
     .dl-grid-body-cell {
       .cell();
       > .dl-grid-body-c-content {
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        height: 20px;
+        .content();
         >a{
           margin-right: 8px;
         }
@@ -156,7 +161,6 @@
     a {
       display: block;
       height: 5px;
-
     }
   }
 

@@ -24,6 +24,7 @@ define(['util'], function () {
     height: 'auto',
     cellMinWidth: 50,
     checkbox: true,
+    bulkMenuHtml:'',
     onSuccess: null,
     onError: null,
     template: {
@@ -45,7 +46,12 @@ define(['util'], function () {
       page: '<div class="dl-grid-page"><div class="info">显示<b>{{from}}</b>到<b>{{to}}</b>,共<b>{{total}}</b>条</div><ul class="pagination">' +
       '<li><a class="first">&laquo;</a></li><li><a class="prev">&lt;</a></li><li><a class="next">&gt;</a></li>' +
       '<li><a class="last">&raquo;</a></li></ul></div>',
-      colResize: '<div class="dl-grid-colResize"></div>'
+      colResize: '<div class="dl-grid-colResize"></div>',
+      bulkMenu: '<div class= "btn-group" dropdown>' +
+                  '<a class="btn btn-xs default" dropdown-toggle>' +
+                  '<i class="fa fa-cog"></i><i class="fa fa-angle-down"></i>' +
+                  '</a>' +
+                  '<ul class="dropdown-menu">{{template}}</ul></div>'
     }
   };
 
@@ -86,10 +92,11 @@ define(['util'], function () {
 
   Grid.prototype.addCheckboxColumn = function () {
     if (this.options.checkbox) {
+      var bulkmenu=$.dl.utils.template(this.options.template.bulkMenu, {template:this.options.bulkMenuHtml});
       this.options.colModel.unshift({
-        display: '<input type="checkbox"/><a class="fa fa-edit"></a>',
+        display: '<input type="checkbox"/>'+bulkmenu,
         displayAlign: 'center',
-        width:50,
+        width: 80,
         name: 'checkbox',
         fix: true
       });
@@ -160,7 +167,7 @@ define(['util'], function () {
         var colModel = options.colModel[j],
           $cell = $(options.template.body.cell),
           $row = colModel.fix ? $rowLeft : $rowRight,
-          content='';
+          content = '';
         $row.append($cell);
         $cell.css('text-align', item.bodyAlign);
         if (!self.cellContentDiff) {
@@ -171,7 +178,7 @@ define(['util'], function () {
         }
         else if (colModel.content) {
           content = $.dl.utils.template(colModel.content, item);
-        } else if(colModel.name){
+        } else if (colModel.name) {
           content = item[colModel.name];
         }
         $cell.children('.dl-grid-body-c-content').html(content).width(colModel.width - self.cellContentDiff);
@@ -417,10 +424,10 @@ define(['util'], function () {
         child = $checkbox.closest('div.dl-grid-head').next().find(':checkbox');
       child.prop('checked', checked);
     });
-    self.gLeftBody.on('click','input:checkbox',function(){
+    self.gLeftBody.on('click', 'input:checkbox', function () {
       var $checkbox = $(this),
         body = $checkbox.closest('div.dl-grid-body'),
-        checked = body.find(':checked').length===body.find(':checkbox').length;
+        checked = body.find(':checked').length === body.find(':checkbox').length;
       body.parent().prev().find(':checkbox').prop('checked', checked);
     });
   };

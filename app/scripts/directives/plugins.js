@@ -1,6 +1,6 @@
 define(['angularAMD'], function (angularAMD) {
   'use strict';
-  angularAMD.directive('dlGrid', function ($compile) {
+  angularAMD.directive('dlGrid', function ($compile, $http, $templateCache) {
     return {
       restrict: 'A',
       link: function (scope, element, attrs) {
@@ -12,7 +12,19 @@ define(['angularAMD'], function (angularAMD) {
           if (onSuccess)onSuccess();
           $compile($element)(scope);
         };
+
+        function getTemplatePromise(templateUrl) {
+          return $http.get(templateUrl,
+            {cache: $templateCache}).then(function (result) {
+              return result.data;
+            });
+        }
+
+        getTemplatePromise('/views/edit.html').then(function (d) {
+          console.log(d)
+        });
         $element.Grid(grid);
+
         grid.getElement = function () {
           return $element;
         };
