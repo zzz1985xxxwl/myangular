@@ -47,7 +47,7 @@
             output.push("__ret.push(" + prop + ");");
             break;
           default:
-            output.push("__ret.push(escape(" + prop + "));");
+            output.push("__ret.push(" + prop + ");");
             break;
         }
       } else {

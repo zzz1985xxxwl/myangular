@@ -1,19 +1,18 @@
 define(['angularAMD'], function (angularAMD) {
   'use strict';
-  angularAMD.controller('SidebarController', ['$scope', '$rootScope','$route' ,function ($scope, $rootScope,$route) {
+  angularAMD.controller('SidebarController', function ($scope, $rootScope, $route, $timeout) {
     $rootScope.sideBarClosed = false;
     $scope.sideBarSearchOpen = false;
-    console.log($route.current.nav);
     $scope.sidebar = [
       {
-        name: 'Home',
+        name: '首页',
         icon: 'home',
         badge: '2',
         open: true,
         active: true,
         child: [
-          {name: 'home1', icon: 'home', badge: '1', url: 'home', active: true},
-          {name: 'table', icon: 'home', badge: '1', url: 'table', active: false},
+          {name: '首页', icon: 'home', badge: '1', url: 'home', active: true},
+          {name: '表格', icon: 'home', badge: '1', url: 'table', active: false},
           {name: 'home1', icon: 'home', badge: '', url: '', active: false}
         ]
       },
@@ -37,12 +36,17 @@ define(['angularAMD'], function (angularAMD) {
     ];
     $scope.sidebar.forEach(function (sidebarItem) {
       sidebarItem.child.forEach(function (item) {
-         item.active=item.url ==$route.current.nav
+        item.active = item.url === $route.current.nav;
       });
     });
+
     $scope.showSidebar = function () {
       $rootScope.sideBarClosed = !$rootScope.sideBarClosed;
+      $timeout(function () {
+        $rootScope.$broadcast('dl.sideBarShowClose', $rootScope.sideBarClosed);
+      }, 50);
     };
+
     $scope.showSearch = function () {
       if ($rootScope.sideBarClosed) {
         $scope.sideBarSearchOpen = true;
@@ -73,7 +77,7 @@ define(['angularAMD'], function (angularAMD) {
       });
       item.active = active;
     };
-  }]).directive('sideBar', function () {
+  }).directive('sideBar', function () {
     return {
       restrict: 'A',
       controller: 'SidebarController',

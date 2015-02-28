@@ -1,7 +1,7 @@
 body {
   font-size: @font-size-base;
   color: #333333;
-  font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "WenQuanYi Micro Hei", sans-serif;
+  font-family: "Helvetica Neue", Arial,"微软雅黑", "Hiragino Sans GB", "Hiragino Sans GB W3", "WenQuanYi Micro Hei", sans-serif;
   direction: ltr;
   min-width: @screen-xs;
   background-color: @black-bg;
@@ -19,6 +19,11 @@ a {
   }
 }
 
+button {
+  i{
+    margin-right: 8px;
+  }
+}
 .relative {
   position: relative;
 }
@@ -101,6 +106,7 @@ Page content
   padding: 0;
   background-color: #f7f7f7;
   margin-bottom: 25px;
+  border-radius: 4px;
   .clearfix;
 }
 

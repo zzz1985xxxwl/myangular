@@ -5,8 +5,8 @@ define(['angularAMD'], function (angularAMD) {
     console.log(data);
     $scope.item = {
       email: '',
-      password:'',
-      number:''
+      password: '',
+      number: ''
     };
     $scope.ok = function () {
       $scope.$broadcast('show-errors-check-validity');
@@ -19,7 +19,7 @@ define(['angularAMD'], function (angularAMD) {
       $modalInstance.dismiss('cancel');
     };
 
-    $scope.reset = function() {
+    $scope.reset = function () {
       $scope.$broadcast('show-errors-reset');
     }
   });
@@ -50,15 +50,17 @@ define(['angularAMD'], function (angularAMD) {
       },
       url: "/grid-data.json",
       orderBy: 'col1 desc',
-      height:370
+      height: 370
     };
-
+    $scope.getItem = function () {
+      $scope.grid.getSelectedItem();
+    };
     $scope.hello = function () {
       $scope.open('lg');
     };
     $scope.grid2 = {
       colModel: [
-        {display: 'Col1', displayAlign: 'center', width: 100, name: 'Col1', sortable: true},
+        {display: 'Col1', displayAlign: 'center', width: 100, name: 'Col1', sortable: true, fix: true},
         {display: 'Col2', displayAlign: 'center', width: 200, name: 'Col2', align: 'left', sortable: true},
         {
           display: 'Col3',

@@ -1,20 +1,21 @@
 .dl-grid {
-  input[type=checkbox]{
+  input[type=checkbox] {
     float: left;
   }
-  a{
-    color:@font-search-control;
+  a {
+    color: @font-search-control;
   }
-  i{
+  i {
     width: 1.25em;
   }
   .cell() {
-    display: inline-block;
+    display: block;
+    float:left;
     position: relative;
     padding: @table-cell-padding;
     border-right: 1px solid @table-border-color;
   }
-  .content(){
+  .content() {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -22,6 +23,7 @@
   }
   .row() {
     border-bottom: 1px solid @table-border-color;
+    .clearfix;
   }
   .dl-grid-container {
     .clearfix();
@@ -30,7 +32,7 @@
       position: absolute;
     }
     .dl-grid-left {
-      background-color:  @table-bg-hover;
+      background-color: @table-bg-hover;
       .dl-grid-body:after {
         content: '';
         //height: 30px;
@@ -52,7 +54,7 @@
     }
   }
   .dl-grid-head {
-    input[type=checkbox]{
+    input[type=checkbox] {
       margin-right: 8px;
     }
     .dl-grid-head-row {
@@ -79,12 +81,15 @@
           background-color: @table-bg-hover;
         }
       }
+      &.selected,&.selected:hover{
+        background-color: beige;
+      }
     }
     .dl-grid-body-cell {
       .cell();
       > .dl-grid-body-c-content {
         .content();
-        >a{
+        > a {
           margin-right: 8px;
         }
       }
@@ -130,7 +135,7 @@
     margin-top: 8px;
     > .info {
       float: left;
-      padding-top: 10px;
+      padding-top: 5px;
     }
     > ul.pagination {
       float: right;
@@ -138,6 +143,11 @@
       a {
         cursor: pointer;
       }
+    }
+    select{
+      float:left;
+      width:auto;
+      margin-left: 20px;
     }
   }
 
@@ -163,5 +173,38 @@
       height: 5px;
     }
   }
-
+  .bulkmenu {
+    display: inline-block;
+    .btn{
+      padding-bottom: 0;
+    }
+    li{
+      position: relative;
+      > a {
+        padding: 5px 14px;
+        font-size:0.85714em ;
+        > i {
+          margin-right: 9px;
+        }
+      }
+    }
+    li:before{
+      content:'';
+      width:8px;
+      height: 28px;
+      display: block;
+      position: absolute;
+      background: #888888;
+    }
+    li.divider{
+      margin:5px 0;
+      overflow: visible;
+      &:before{
+        top:-12px;
+      }
+    }
+    .dropdown-submenu > a:after{
+      top:5px;
+    }
+  }
 }
