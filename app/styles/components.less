@@ -3151,16 +3151,16 @@ UI Loading
 }
 
 .loading-message.loading-message-boxed {
-  border: 1px solid #ddd;
-  background-color: #eee;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
-  -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+//  border: 1px solid #ddd;
+//  background-color: #eee;
+//  -webkit-border-radius: 4px;
+//  -moz-border-radius: 4px;
+//  -ms-border-radius: 4px;
+//  -o-border-radius: 4px;
+//  border-radius: 4px;
+//  -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+//  -moz-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+//  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
 }
 
 .loading-message > span {
@@ -3237,6 +3237,8 @@ UI Loading
   text-align: center;
 }
 
+
+
 .block-spinner-bar > div {
   margin: 0 2px;
   width: 15px;
@@ -3260,7 +3262,10 @@ UI Loading
   -webkit-animation-delay: -0.16s;
   animation-delay: -0.16s;
 }
-
+.page-spinner-bar > div,
+.block-spinner-bar > div {
+  background: #20c5ad;
+}
 /***
 Customized Bootstrap Modal
 ***/
@@ -3789,7 +3794,7 @@ Portlets
 .portlet > .portlet-title > .actions > .btn.btn-sm.btn-default,
 .portlet > .portlet-title > .actions > .btn-group > .btn.btn-default,
 .portlet > .portlet-title > .actions > .btn-group > .btn.btn-sm.btn-default {
-  padding: 3px 9px;
+  padding: 1px 9px;
 }
 
 .portlet > .portlet-title > .actions > .btn > i,
@@ -3907,7 +3912,7 @@ Portlets
 
 .portlet > .portlet-title > .nav-tabs {
   background: none;
-  margin: 0;
+  margin: 0 10px;
   float: right;
   display: inline-block;
   border: 0;
@@ -3923,7 +3928,8 @@ Portlets
   background: none;
   margin: 5px 0 0 1px;
   border: 0;
-  padding: 8px 10px;
+  //padding: 8px 10px;
+  padding: 6px 10px;
   color: #fff;
 }
 
@@ -5757,17 +5763,20 @@ AngularJS Basic Animations
   .portlet.box.@{name} > .portlet-title > .actions .btn-default {
     background: transparent !important;
     background-color: transparent !important;
-    border: 1px solid lighten(@bgColor, 22%);
-    color: lighten(@bgColor, 27%);
+    border: 1px solid #ffffff;//lighten(@bgColor, 22%);
+    color: #ffffff;//lighten(@bgColor, 27%);
   }
 
   .portlet.box.@{name} > .portlet-title > .actions .btn-default > i {
-    color: lighten(@bgColor, 30%);
+    color: #ffffff;//lighten(@bgColor, 30%);
   }
 
   .portlet.box.@{name} > .portlet-title > .actions .btn-default:hover, .portlet.box.@{name} > .portlet-title > .actions .btn-default:focus, .portlet.box.@{name} > .portlet-title > .actions .btn-default:active, .portlet.box.@{name} > .portlet-title > .actions .btn-default.active {
     border: 1px solid lighten(@bgColor, 32%);
     color: lighten(@bgColor, 37%);
+    >i{
+      color: lighten(@bgColor, 37%);
+    }
   }
 
   /* Statistic Block */

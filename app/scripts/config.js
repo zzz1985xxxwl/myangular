@@ -12,11 +12,15 @@ require.config({
     'angular-bootstrap': '../../bower_components/angular-bootstrap/ui-bootstrap-tpls',
     'angularAMD': '../../bower_components/angularAMD/angularAMD',
     'angular-bootstrap-show-errors':'../../bower_components/angular-bootstrap-show-errors/src/showErrors',
+    'angularLocalStorage':'../../bower_components/angularLocalStorage/src/angularLocalStorage',
+    'blockUI':'../../bower_components/angular-block-ui/dist/angular-block-ui',
+    'inform':'../../bower_components/angular-inform/dist/angular-inform',
     'util':'plugins/util'
   },
 
   // Add angular modules that does not support AMD out of the box, put it in a shim
   shim: {
+    'angular':['jquery'],
     'angularAMD': ['angular'],
     'angular-route': ['angular'],
     'angular-animate':['angular'],
@@ -25,7 +29,10 @@ require.config({
     'angular-sanitize':['angular'],
     'angular-bootstrap':['angular'],
     'angular-bootstrap-show-errors':['angular'],
-    'util':['jquery']
+    'util':['jquery'],
+    'angularLocalStorage':['angular','angular-cookies'],
+    'blockUI':['angular'],
+    'inform':['angular']
   },
 
   // kick start application

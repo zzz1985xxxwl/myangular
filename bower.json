@@ -15,6 +15,9 @@
     "fontawesome": "~4.3.0",
     "angularAMD": "~0.2.1",
     "angular-bootstrap": "~0.12.0",
-    "angular-bootstrap-show-errors": "~2.3.0"
+    "angular-bootstrap-show-errors": "~2.3.0",
+    "angularLocalStorage": "~0.3.0",
+    "angular-block-ui": "~0.2.0",
+    "angular-inform": "~0.0.18"
   }
 }

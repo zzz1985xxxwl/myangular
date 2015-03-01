@@ -1,8 +1,6 @@
 define(['angularAMD'], function (angularAMD) {
   'use strict';
   angularAMD.controller('EditController', function ($scope, $modalInstance, data) {
-
-    console.log(data);
     $scope.item = {
       email: '',
       password: '',
@@ -24,11 +22,14 @@ define(['angularAMD'], function (angularAMD) {
     }
   });
 
-  return ['$scope', '$modal', function ($scope, $modal) {
+  return ['$scope', '$modal', 'blockUI', '$timeout', 'inform', function ($scope, $modal, blockUI, $timeout, inform) {
+    var blockInstance = blockUI.instances.get('orders');
     $scope.searchParam = {
       name: ""
     };
     $scope.search = function () {
+      inform.add('searching!');
+      blockInstance.start();
       $scope.grid.load(1);
     };
     $scope.grid = {
@@ -48,15 +49,25 @@ define(['angularAMD'], function (angularAMD) {
       params: function () {
         return $scope.searchParam;
       },
-      url: "/grid-data.json",
+      url: '/grid-data.json',
+      bulkMenuUrl: '/views/order/bulkmenu.html',
       orderBy: 'col1 desc',
-      height: 370
+      height: 370,
+      onSuccess: function () {
+        blockInstance.stop();
+      }
     };
     $scope.getItem = function () {
       $scope.grid.getSelectedItem();
     };
     $scope.hello = function () {
       $scope.open('lg');
+    };
+    $scope.reload = function () {
+      blockUI.start();
+      $timeout(function () {
+        blockUI.stop();
+      }, 2000);
     };
     $scope.grid2 = {
       colModel: [
@@ -82,7 +93,8 @@ define(['angularAMD'], function (angularAMD) {
       params: function () {
         return $scope.searchParam;
       },
-      url: "/grid-data.json",
+      url: '/grid-data.json',
+      bulkMenuUrl: '/views/order/bulkmenu.html',
       orderBy: 'col1 desc'
     };
     $scope.items = ['item1', 'item2', 'item3'];

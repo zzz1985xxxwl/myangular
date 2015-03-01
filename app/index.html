@@ -9,6 +9,9 @@
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
   <!-- build:css(.tmp) styles/main.css -->
   <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="bower_components/angular-block-ui/dist/angular-block-ui.min.css">
+  <link rel="stylesheet" href="bower_components/angular-inform/dist/angular-inform.min.css">
+
   <!-- endbuild -->
   <!-- build:js scripts/vendor/modernizr.js -->
   <script src="bower_components/modernizr/modernizr.js"></script>
@@ -111,12 +114,13 @@
     </ul>
   </div>
 </header>
+<div inform class="inform-fixed inform-shadow inform-animate"></div>
 <div class="page-container">
   <div class="page-sidebar-wrapper" side-bar>
 
   </div>
   <div class="page-content-wrapper">
-    <div class="page-content page-content-height" data-ng-view>
+    <div class="page-content page-content-height fade" data-ng-view>
 
     </div>
   </div>
