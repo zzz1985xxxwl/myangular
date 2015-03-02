@@ -14,6 +14,7 @@ define([
 	'directives/portlet',
 	'directives/plugins',
 	'directives/validation',
+  'directives/sidebarClosed',
 	'animation/slideDown',
 	'angular-resource',
 	'angular-bootstrap',

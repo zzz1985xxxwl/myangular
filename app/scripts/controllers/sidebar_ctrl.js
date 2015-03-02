@@ -1,8 +1,6 @@
 define(['angularAMD'], function (angularAMD) {
   'use strict';
-  angularAMD.controller('SidebarController', function ($scope, $rootScope, $route, $timeout,storage) {
-    storage.bind($rootScope,'sideBarClosed',{defaultValue: false});
-    $scope.sideBarSearchOpen = false;
+  angularAMD.controller('SidebarController', function ($scope, $rootScope, $route) {
     $scope.sidebar = [
       {
         name: '首页',
@@ -39,13 +37,6 @@ define(['angularAMD'], function (angularAMD) {
         item.active = item.url === $route.current.nav;
       });
     });
-
-    $scope.showSidebar = function () {
-      $rootScope.sideBarClosed = !$rootScope.sideBarClosed;
-      $timeout(function () {
-        $rootScope.$broadcast('dl.sideBarShowClose', $rootScope.sideBarClosed);
-      }, 50);
-    };
 
     $scope.showSearch = function () {
       if ($rootScope.sideBarClosed) {

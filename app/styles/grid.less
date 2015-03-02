@@ -44,8 +44,9 @@
       position: relative;
       .dl-grid-head {
         width: 10000px;
-        .dl-grid-head-cell{
-          position: absolute;
+
+        .dl-grid-head-cell {
+          // position: absolute;
         }
       }
     }
@@ -70,10 +71,16 @@
       .cell();
       line-height: 23px;
       cursor: pointer;
-      &.dragging{
-        border-left:1px solid @table-border-color;
-        background-color:beige ;
+      &.dragging {
+        background-color: beige;
+        position: absolute;
+        border-left: 1px solid @table-border-color;
       }
+    }
+    .reorderWrap {
+      background-color: @gray-bg;
+      height: 100%;
+      float: left;
     }
   }
   .dl-grid-body {
@@ -165,7 +172,7 @@
       position: absolute;
       width: 5px;
       cursor: col-resize;
-      &:hover,&.dragging {
+      &:hover, &.dragging {
         background-color: @table-border-color;
       }
     }
