@@ -494,18 +494,23 @@ define(['angularAMD', 'util', 'drag-event', 'drop-event'], function (angularAMD)
 				$(info.target).addClass('dragging');
 				info.oLeft = parseInt($cell.css('left'));
 				info.n = self.gRightHead.find('.dl-grid-head-cell').index($(info.target));
+				info.oPageX = e.pageX;
 			}, {distance: 5})
 				.drag(function (e, info) {
-					var $target = $(info.target), nLeft = info.oLeft + info.deltaX, targetWidth = $target.outerWidth(), nRight = targetWidth + nLeft;
+					var $target = $(info.target), nLeft = info.oLeft + info.deltaX, direction = info.oPageX - e.pageX, targetWidth = $target.outerWidth(), nRight = targetWidth + nLeft;
 					if (nLeft >= 0) {
 						$target.css('left', nLeft);
 						self.gRightHead.find('.dl-grid-head-cell').not($target).each(function (i, item) {
 							var $item = $(item), itemLeft = parseInt($item.css('left')), width = $item.outerWidth(), itemRight = width + itemLeft;
-							if (nLeft < (itemLeft + width / 2) && nLeft > itemLeft) {
-								$item.css('left', itemLeft + targetWidth)
+							if (direction > 0 && nLeft < (itemLeft + width / 2) && nLeft > itemLeft) {
+								$item.css('left', itemLeft + targetWidth);
+								info.oPageX = e.pageX;
+								return false;
 							}
-							else if (nRight > (itemLeft + width / 2) && nRight < itemRight) {
-								$item.css('left', itemLeft - $target.outerWidth())
+							if (direction < 0 && nRight > (itemLeft + width / 2) && nRight < itemRight) {
+								$item.css('left', itemLeft - $target.outerWidth());
+								info.oPageX = e.pageX;
+								return false;
 							}
 							//left += width;
 						});
