@@ -10,7 +10,7 @@
   }
   .cell() {
     display: block;
-    float:left;
+    float: left;
     position: relative;
     padding: @table-cell-padding;
     border-right: 1px solid @table-border-color;
@@ -44,6 +44,9 @@
       position: relative;
       .dl-grid-head {
         width: 10000px;
+        .dl-grid-head-cell{
+          position: absolute;
+        }
       }
     }
   }
@@ -60,12 +63,16 @@
     .dl-grid-head-row {
       .row();
       font-weight: bold;
+      height: 40px;
+      position: relative;
     }
     .dl-grid-head-cell {
       .cell();
       line-height: 23px;
-      &.sortable {
-        cursor: pointer;
+      cursor: pointer;
+      &.dragging{
+        border-left:1px solid @table-border-color;
+        background-color:beige ;
       }
     }
   }
@@ -81,7 +88,7 @@
           background-color: @table-bg-hover;
         }
       }
-      &.selected,&.selected:hover{
+      &.selected, &.selected:hover {
         background-color: beige;
       }
     }
@@ -144,9 +151,9 @@
         cursor: pointer;
       }
     }
-    select{
-      float:left;
-      width:auto;
+    select {
+      float: left;
+      width: auto;
       margin-left: 20px;
     }
   }
@@ -158,7 +165,7 @@
       position: absolute;
       width: 5px;
       cursor: col-resize;
-      &:hover {
+      &:hover,&.dragging {
         background-color: @table-border-color;
       }
     }
@@ -175,36 +182,41 @@
   }
   .bulkmenu {
     display: inline-block;
-    .btn{
+    .btn {
       padding-bottom: 0;
     }
-    li{
+    li {
       position: relative;
       > a {
         padding: 5px 14px;
-        font-size:0.85714em ;
+        font-size: 0.85714em;
         > i {
           margin-right: 9px;
         }
       }
     }
-    li:before{
-      content:'';
-      width:8px;
+    li:before {
+      content: '';
+      width: 8px;
       height: 28px;
       display: block;
       position: absolute;
       background: #888888;
     }
-    li.divider{
-      margin:5px 0;
+    li.divider {
+      margin: 5px 0;
       overflow: visible;
-      &:before{
-        top:-12px;
+      &:before {
+        top: -12px;
       }
     }
-    .dropdown-submenu > a:after{
-      top:5px;
+    .dropdown-submenu > a:after {
+      top: 5px;
+    }
+    .dropdown-submenu > .dropdown-menu {
+      a {
+        margin-left: 10px;
+      }
     }
   }
 }
