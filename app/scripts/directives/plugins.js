@@ -20,6 +20,6 @@ define(['angularAMD'], function (angularAMD) {
           $element = null;
         });
       }
-    }
+    };
   });
 });

@@ -12,7 +12,7 @@ define(['angularAMD'], function (angularAMD) {
         element.on('click', function () {
           if ($body.hasClass(theClass)) {
             $body.removeClass(theClass);
-            storage.remove(key)
+            storage.remove(key);
           } else {
             $body.addClass(theClass);
             storage.set(key, theClass);
@@ -22,6 +22,6 @@ define(['angularAMD'], function (angularAMD) {
           }, 50);
         });
       }
-    }
-  })
+    };
+  });
 });

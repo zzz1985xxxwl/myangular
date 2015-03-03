@@ -335,14 +335,6 @@ define(['angularAMD', 'util', 'drag-event', 'drop-event'], function (angularAMD)
       });
     };
 
-    Grid.prototype.saveState = function () {
-      storage.set('grid-' + this.options.url, this.options.colModel);
-    };
-
-    Grid.prototype.getState = function () {
-      return storage.get('grid-' + this.options.url);
-    };
-
     Grid.prototype._moveGridHeadDrag = function () {
       var left = 0, gridColResize = this.gContainer.find('.dl-grid-colResize');
       this.gRightHead.find('.dl-grid-head-cell').each(function (i, item) {
@@ -403,6 +395,7 @@ define(['angularAMD', 'util', 'drag-event', 'drop-event'], function (angularAMD)
       return rightBodyScrollWidth;
     };
 
+    //scroll,sort,tree
     Grid.prototype._bindEvent = function () {
       var self = this;
       self.scroll.scroll(function () {
@@ -427,24 +420,29 @@ define(['angularAMD', 'util', 'drag-event', 'drop-event'], function (angularAMD)
         self.load();
       });
       //tree event
-      self.gRightBody.on('click', 'a.dl-grid-body-node-toggle', function () {
+      self.gContainer.on('click', 'a.dl-grid-body-node-toggle', function () {
         var $this = $(this),
           $cell = $this.closest('.dl-grid-body-cell'),
           isOpen = $this.hasClass('fa-minus-square'),
           treeNode = $cell.attr('treeNode'),
-          $childRow = self.gRightBody.find('.dl-grid-body-cell[treeNode^=' + treeNode + '-]').parent();
+          $childRow = $cell.closest('div.dl-grid-body').find('.dl-grid-body-cell[treeNode^=' + treeNode + '-]').parent(),
+          rowIndex;
         if (isOpen) {
           $this.removeClass('fa-minus-square').addClass('fa-plus-square');
           $childRow.each(function () {
-            if ($(this).css('display') !== 'none') {
-              $(this).hide().data('closedBy', treeNode);
+            var $row = $(this);
+            if ($row.css('display') !== 'none') {
+              rowIndex = $row.attr('rowIndex');
+              self.gContainer.find('div.dl-row-' + rowIndex).hide().attr('closedBy', treeNode);
             }
           });
         } else {
           $this.removeClass('fa-plus-square').addClass('fa-minus-square');
           $childRow.each(function () {
-            if ($(this).data('closedBy') === treeNode) {
-              $(this).show();
+            var $row = $(this);
+            if ($row.attr('closedBy') === treeNode) {
+              rowIndex = $row.attr('rowIndex');
+              self.gContainer.find('div.dl-row-' + rowIndex).show();
             }
           });
         }
@@ -480,7 +478,7 @@ define(['angularAMD', 'util', 'drag-event', 'drop-event'], function (angularAMD)
         var allChecked = true, itemCheck;
         self.gLeftBody.find(':checkbox').each(function (i, item) {
           itemCheck = !$(item).prop('checked');
-          allChecked &= itemCheck;
+          allChecked = allChecked && itemCheck;
           $(item).prop('checked', itemCheck);
         });
         self.gLeftHead.find(':checkbox').prop('checked', allChecked);
@@ -624,6 +622,14 @@ define(['angularAMD', 'util', 'drag-event', 'drop-event'], function (angularAMD)
       });
 
       return items;
+    };
+
+    Grid.prototype.saveState = function () {
+      storage.set('grid-' + this.options.url, this.options.colModel);
+    };
+
+    Grid.prototype.getState = function () {
+      return storage.get('grid-' + this.options.url);
     };
 
     Grid.prototype.dispose = function () {

@@ -1,9 +1,9 @@
 define(['angularAMD'], function (angularAMD) {
   'use strict';
-  angularAMD.directive('portlet', function ($compile, $http, $templateCache, $window, $timeout) {
+  angularAMD.directive('portlet', function () {
     return {
       restrict: 'EAC',
-      link: function (scope, element, attrs) {
+      link: function (scope, element) {
         var $element = $(element), $portletBody = $element.children('.portlet-body');
         $element.on('click', 'a.fa-chevron-down', function () {
           var $this = $(this);
@@ -19,7 +19,7 @@ define(['angularAMD'], function (angularAMD) {
             height: 0,
             opacity: 0
           }, 200, function () {
-            $element.remove()
+            $element.remove();
           });
         }).on('click','a.fa-expand',function(){
           $(this).removeClass('fa-expand').addClass('fa-compress');
@@ -29,6 +29,6 @@ define(['angularAMD'], function (angularAMD) {
           $element.removeClass('portlet-fullscreen');
         });
       }
-    }
-  })
+    };
+  });
 });

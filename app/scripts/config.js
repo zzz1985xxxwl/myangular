@@ -16,8 +16,8 @@ require.config({
 		'blockUI': '../../bower_components/angular-block-ui/dist/angular-block-ui',
 		'inform': '../../bower_components/angular-inform/dist/angular-inform',
 		'util': 'plugins/util',
-		'drag-event': 'plugins/jquery.event.drag-2.2',
-		'drop-event': 'plugins/jquery.event.drop-2.2'
+		'drag-event': '../../bower_components/jquery.event.drag-new/event.drag/jquery.event.drag',
+		'drop-event': '../../bower_components/jquery.event.drag-new/event.drop/jquery.event.drop'
 	},
 
 	// Add angular modules that does not support AMD out of the box, put it in a shim

@@ -19,13 +19,13 @@ define(['angularAMD'], function (angularAMD) {
 
     $scope.reset = function () {
       $scope.$broadcast('show-errors-reset');
-    }
+    };
   });
 
   return ['$scope', '$modal', 'blockUI', '$timeout', 'inform', function ($scope, $modal, blockUI, $timeout, inform) {
     var blockInstance = blockUI.instances.get('orders');
     $scope.searchParam = {
-      name: ""
+      name: ''
     };
     $scope.search = function () {
       inform.add('searching!');
@@ -112,7 +112,7 @@ define(['angularAMD'], function (angularAMD) {
       });
 
       modalInstance.result.then(function (item) {
-        console.log(item)
+        console.log(item);
       }, function () {
       });
     };

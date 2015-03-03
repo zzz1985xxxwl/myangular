@@ -18,6 +18,7 @@
     "angular-bootstrap-show-errors": "~2.3.0",
     "angularLocalStorage": "~0.3.0",
     "angular-block-ui": "~0.2.0",
-    "angular-inform": "~0.0.18"
+    "angular-inform": "~0.0.18",
+    "jquery.event.drag-new": "*"
   }
 }

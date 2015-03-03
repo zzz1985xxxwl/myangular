@@ -42,8 +42,8 @@ define(['angularAMD'], function (angularAMD) {
 
     $scope.containsInChild = function (sidebarParent) {
       return sidebarParent.child.some(function (item) {
-        return item.name.indexOf($scope.searchParam) >= 0
-      })
+        return item.name.indexOf($scope.searchParam) >= 0;
+      });
     };
 
     $scope.showSearch = function () {
