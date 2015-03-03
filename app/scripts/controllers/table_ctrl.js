@@ -70,8 +70,8 @@ define(['angularAMD'], function (angularAMD) {
       }, 2000);
     };
     $scope.grid2 = {
+      colModelFix:[{display: 'Col1', displayAlign: 'center', width: 100, name: 'Col1', sortable: true}],
       colModel: [
-        {display: 'Col1', displayAlign: 'center', width: 100, name: 'Col1', sortable: true, fix: true},
         {display: 'Col2', displayAlign: 'center', width: 200, name: 'Col2', align: 'left', sortable: true},
         {
           display: 'Col3',

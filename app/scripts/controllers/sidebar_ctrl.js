@@ -38,16 +38,22 @@ define(['angularAMD'], function (angularAMD) {
       });
     });
 
+    $scope.searchParam = '';
+
+    $scope.containsInChild = function (sidebarParent) {
+      return sidebarParent.child.some(function (item) {
+        return item.name.indexOf($scope.searchParam) >= 0
+      })
+    };
+
     $scope.showSearch = function () {
-      if ($rootScope.sideBarClosed) {
-        $scope.sideBarSearchOpen = true;
-      }
+      $scope.sideBarSearchOpen = true;
     };
+
     $scope.closeSearch = function () {
-      if ($rootScope.sideBarClosed) {
-        $scope.sideBarSearchOpen = false;
-      }
+      $scope.sideBarSearchOpen = false;
     };
+
     $scope.menuParentClick = function (item) {
       var open = !item.open;
       $scope.sidebar.forEach(function (sidebarItem) {

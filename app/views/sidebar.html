@@ -11,14 +11,14 @@
         </a>
 
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search...">
+          <input type="text" class="form-control" ng-model="searchParam" placeholder="Search...">
 							<span class="input-group-btn">
 							<a class="btn" ng-click="showSearch()"><i class="fa fa-search"></i></a>
 							</span>
         </div>
       </div>
     </li>
-    <li ng-repeat="item in sidebar" ng-class="{active:item.active,open:item.open}">
+    <li ng-repeat="item in sidebar|filter:containsInChild" ng-class="{active:item.active,open:item.open}">
       <a class="toggle" ng-click="menuParentClick(item)">
         <i class="fa fa-{{item.icon}}"></i>
         <span class="title" ng-bind="item.name"></span>
@@ -27,7 +27,7 @@
         <span ng-if="item.badge!=''" class="badge badge-warning" ng-bind="item.badge"></span>
       </a>
       <ul class="sub-menu" ng-class="{'slide-down':item.open}">
-        <li ng-repeat="child in item.child" ng-class="{active:child.active}">
+        <li ng-repeat="child in item.child | filter:{name:searchParam}" ng-class="{active:child.active}">
           <a ng-click="menuChildClick(child)" href="#/{{child.url}}">
             <i class="fa fa-{{child.icon}}"></i>
             <span ng-if="child.badge!=''" class="badge badge-success" ng-bind="child.badge"></span>
